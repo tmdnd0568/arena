@@ -200,17 +200,19 @@ const UserProfileCard = styled.div`
   }
 
   .logout-btn {
-    height: 40px;
-    padding: 0 18px;
+    padding: 8px 14px;
     border-radius: 12px;
     background: #f1f5f9;
     border: 1px solid #e2e8f0;
     color: #64748b;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
     cursor: pointer;
     transition: all 0.2s ease;
     align-self: center;
+    white-space: pre-line;
 
     &:hover {
       background: #e2e8f0;
@@ -729,7 +731,7 @@ const MyPage: React.FC = () => {
           </div>
         </div>
         <button className="logout-btn" onClick={logout}>
-          로그아웃
+          로그<br />아웃
         </button>
       </UserProfileCard>
 
