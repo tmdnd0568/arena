@@ -9,35 +9,26 @@ import {
 import { auth } from '../lib/firebase';
 import { useApp } from '../context/AppContext';
 
-const Overlay = styled.div`
-  position: fixed;
-  inset: 0;
-  background: rgba(16, 32, 43, 0.45);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+const LoginWrapper = styled.div`
+  width: 100%;
+  min-height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+  flex-direction: column;
+  background: #ffffff;
+  padding: 40px 24px;
 `;
 
 const LoginCard = styled.div`
-  max-width: 440px;
   width: 100%;
-  background: #ffffff;
-  border-radius: 28px;
-  box-shadow: 0 20px 50px rgba(0, 43, 73, 0.15);
-  padding: 36px 28px;
   display: flex;
   flex-direction: column;
-  position: relative;
-  border: 1px solid #e2e8f0;
+  text-align: left;
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 
     h2 {
       font-family: ${({ theme }) => theme.fonts.jua};
@@ -53,7 +44,6 @@ const LoginCard = styled.div`
     flex-direction: column;
     gap: 16px;
     margin-bottom: 24px;
-    text-align: left;
   }
 
   label {
@@ -104,7 +94,7 @@ const LoginCard = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 
     button {
       font-size: 12px;
@@ -257,7 +247,7 @@ const FullPageLogin: React.FC = () => {
   };
 
   return (
-    <Overlay>
+    <LoginWrapper>
       <LoginCard>
         <div className="card-header">
           <h2>
@@ -371,7 +361,7 @@ const FullPageLogin: React.FC = () => {
           </button>
         </div>
       </LoginCard>
-    </Overlay>
+    </LoginWrapper>
   );
 };
 

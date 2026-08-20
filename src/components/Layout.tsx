@@ -90,10 +90,6 @@ const Layout: React.FC = () => {
   }
 
   // 2. 로그인되지 않았을 경우에는 전체화면 로그인 페이지로 대체
-  if (!user) {
-    return <FullPageLogin />;
-  }
-
   return (
     <LayoutContainer className="layout">
       {/* 좌측 70% 브랜드 패널 (데스크탑에서만 보임) */}
@@ -101,21 +97,27 @@ const Layout: React.FC = () => {
 
       {/* 우측 30% 서비스 패널 (모바일에서는 전체 화면) */}
       <ServicePanel className="service-panel">
-        {/* 본문 콘텐츠 스크롤 영역 */}
-        <ServiceMain className="service-main">
-          {/* 헤더: sticky top:0 으로 고정 */}
-          <StickyHeader>
-            <Header onMenuOpen={() => setIsMenuOpen(true)} />
-          </StickyHeader>
+        {!user ? (
+          <FullPageLogin />
+        ) : (
+          <>
+            {/* 본문 콘텐츠 스크롤 영역 */}
+            <ServiceMain className="service-main">
+              {/* 헤더: sticky top:0 으로 고정 */}
+              <StickyHeader>
+                <Header onMenuOpen={() => setIsMenuOpen(true)} />
+              </StickyHeader>
 
-          <Outlet />
-        </ServiceMain>
+              <Outlet />
+            </ServiceMain>
 
-        {/* 하단 탭바 */}
-        <BottomTabbar />
+            {/* 하단 탭바 */}
+            <BottomTabbar />
 
-        {/* 모바일 햄버거 메뉴 사이드바 */}
-        <MenuDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+            {/* 모바일 햄버거 메뉴 사이드바 */}
+            <MenuDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+          </>
+        )}
       </ServicePanel>
     </LayoutContainer>
   );
