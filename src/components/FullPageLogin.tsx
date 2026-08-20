@@ -18,6 +18,18 @@ const LoginWrapper = styled.div`
   padding: 40px 24px;
 `;
 
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+
+  .logo-img {
+    height: 26px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+`;
+
 const LoginCard = styled.div`
   width: 100%;
   display: flex;
@@ -249,6 +261,10 @@ const FullPageLogin: React.FC = () => {
   return (
     <LoginWrapper>
       <LoginCard>
+        <LogoWrapper>
+          <img src="/images/arena_02.png" alt="ARENA 로고" className="logo-img" />
+        </LogoWrapper>
+
         <div className="card-header">
           <h2>
             {mode === 'login' && '로그인'}
