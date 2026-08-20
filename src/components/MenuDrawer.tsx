@@ -71,54 +71,7 @@ const DrawerMain = styled.div`
   padding-bottom: 160px; /* 하단 고정 푸터 공간 확보 */
 `;
 
-const LoginBox = styled.a`
-  display: flex;
-  align-items: center;
-  padding: 24px 16px;
-  background: #00223d;
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.white};
-  transition: background 0.2s ease;
 
-  &:hover {
-    background: #00182c;
-  }
-
-  .profile {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: ${({ theme }) => theme.colors.white};
-    margin-right: 14px;
-
-    svg {
-      width: 22px;
-      height: 22px;
-    }
-  }
-
-  .text {
-    flex: 1;
-    h2 {
-      font-size: clamp(0.95rem, 2vw + 0.2rem, 1.1rem);
-      font-weight: 700;
-      color: ${({ theme }) => theme.colors.white};
-      margin-bottom: 3px;
-    }
-    p {
-      font-size: clamp(0.72rem, 1.5vw + 0.1rem, 0.78rem);
-      color: rgba(255, 255, 255, 0.7);
-    }
-  }
-
-  .arrow {
-    color: rgba(255, 255, 255, 0.6);
-  }
-`;
 
 const CategorySection = styled.div`
   padding: 22px 16px 16px;
@@ -506,22 +459,7 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
           </DrawerHeader>
 
           <DrawerMain>
-            {/* 로그인 / 회원가입 */}
-            <LoginBox onClick={() => setIsLoginModalOpen(true)} style={{ cursor: 'pointer' }}>
-              <div className="profile">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-              </div>
-              <div className="text">
-                <h2>{t('loginSignup')}</h2>
-                <p>{t('memberBenefit')}</p>
-              </div>
-              <svg className="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </LoginBox>
+
 
             {/* 쇼핑 카테고리 */}
             <CategorySection>
