@@ -1647,7 +1647,7 @@ export const ReturnRequestModal: React.FC<ReturnRequestModalProps> = ({ onClose 
 // ==========================================
 interface PaymentModalProps {
   onClose: () => void;
-  onPaymentSuccess: (requestMsg: string) => void;
+  onPaymentSuccess: () => void;
   totalPrice: number;
   itemCount: number;
 }
@@ -1689,16 +1689,229 @@ const PaymentMethodOption = styled.button<{ $isSelected: boolean }>`
   }
 `;
 
+// Toss Pay specific styles
+const TossPayButton = styled.button`
+  width: 100%;
+  height: 54px;
+  border-radius: 12px;
+  border: none;
+  background: #0064FF;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(0, 100, 255, 0.35);
+  letter-spacing: -0.3px;
+
+  &:hover {
+    background: #0050CC;
+    box-shadow: 0 6px 20px rgba(0, 100, 255, 0.45);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 8px rgba(0, 100, 255, 0.25);
+  }
+
+  .toss-logo-text {
+    font-size: 20px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -1px;
+  }
+`;
+
+const TossPayBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #0064FF;
+  color: #fff;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 13px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.5px;
+  line-height: 1.4;
+`;
+
+const TossPayInfoBox = styled.div`
+  background: #f0f6ff;
+  border: 1.5px solid #c2d9ff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  text-align: left;
+
+  .toss-info-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #0050CC;
+  }
+
+  .toss-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .toss-info-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #4a6fa5;
+      font-weight: 600;
+
+      .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #0064FF;
+        flex-shrink: 0;
+      }
+    }
+  }
+`;
+
+const TossProcessingOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  animation: ${fadeIn} 0.2s ease-out;
+
+  .toss-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e0ecff;
+    border-top-color: #0064FF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .toss-processing-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0064FF;
+  }
+
+  .toss-processing-sub {
+    font-size: 12px;
+    color: #64798a;
+    font-weight: 600;
+  }
+`;
+
 export const PaymentModal: React.FC<PaymentModalProps> = ({ onClose, onPaymentSuccess, totalPrice, itemCount }) => {
-  const [method, setMethod] = useState<'card' | 'easy' | 'bank'>('card');
+  const [method, setMethod] = useState<'card' | 'easy' | 'bank' | 'toss'>('card');
   const [deliveryMsg, setDeliveryMsg] = useState('문 앞에 놓아주세요');
+  const [isTossProcessing, setIsTossProcessing] = useState(false);
+
+  const handleGeneralPayment = async (selectedMethod: 'card' | 'easy' | 'toss' | 'bank') => {
+    if (selectedMethod === 'bank') {
+      onPaymentSuccess();
+      return;
+    }
+
+    try {
+      setIsTossProcessing(true);
+      const TossPayments = (window as any).TossPayments;
+      if (!TossPayments) {
+        alert("토스 페이먼츠 SDK가 로드되지 않았습니다. 잠시 후 다시 시도해 주세요.");
+        setIsTossProcessing(false);
+        return;
+      }
+
+      const tossPayments = TossPayments("test_ck_DpexMgkW36RM7BDG6qqb3GbR5ozO");
+      const clientRandomKey = `AR-GUEST-${Math.random().toString(36).substring(2, 11).toUpperCase()}`;
+      const payment = tossPayments.payment({
+        customerKey: clientRandomKey,
+      });
+
+      const generatedOrderId = `AR-${Math.random().toString(36).substring(2, 11).toUpperCase()}`;
+      const orderName = itemCount > 1 ? `아레나 상품 외 ${itemCount - 1}건` : "아레나 상품 1건";
+      const successUrl = `${window.location.origin}/payment/success`;
+      const failUrl = `${window.location.origin}/payment/fail`;
+
+      if (selectedMethod === 'card') {
+        await payment.requestPayment({
+          method: "CARD",
+          amount: { currency: "KRW", value: totalPrice },
+          orderId: generatedOrderId,
+          orderName,
+          successUrl,
+          failUrl,
+        });
+      } else if (selectedMethod === 'easy') {
+        await payment.requestPayment({
+          method: "CARD",
+          amount: { currency: "KRW", value: totalPrice },
+          orderId: generatedOrderId,
+          orderName,
+          successUrl,
+          failUrl,
+        });
+      } else if (selectedMethod === 'toss') {
+        await payment.requestPayment({
+          method: "CARD",
+          amount: { currency: "KRW", value: totalPrice },
+          orderId: generatedOrderId,
+          orderName,
+          successUrl,
+          failUrl,
+          card: {
+            flowMode: "DIRECT",
+            easyPay: "TOSSPAY",
+          },
+        });
+      }
+    } catch (error: any) {
+      console.error("Toss Payments Error:", error);
+      setIsTossProcessing(false);
+      alert(`결제 요청 중 오류가 발생했습니다: ${error.message || error}`);
+    }
+  };
 
   return createPortal(
     <ModalOverlay onClick={onClose}>
-      <ModalCard onClick={(e) => e.stopPropagation()}>
+      <ModalCard onClick={(e) => e.stopPropagation()} style={{ position: 'relative' }}>
+        {/* 토스 결제 처리 중 오버레이 */}
+        {isTossProcessing && (
+          <TossProcessingOverlay>
+            <div className="toss-spinner" />
+            <div className="toss-processing-title">토스 결제 처리 중...</div>
+            <div className="toss-processing-sub">잠시만 기다려 주세요</div>
+          </TossProcessingOverlay>
+        )}
+
         <ModalHeader>
           <h3>주문 및 결제</h3>
-          <button className="close-btn" onClick={onClose} aria-label="닫기">
+          <button className="close-btn" onClick={onClose} aria-label="닫기" disabled={isTossProcessing}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -1708,10 +1921,10 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ onClose, onPaymentSu
 
         <ModalBody style={{ padding: '20px' }}>
           {/* 결제 요약 */}
-          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '12px', border: '1px solid #e1eaf0', marginBottom: '20px', textAlign: 'left' }}>
+          <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '12px', border: '1px solid #10202b', marginBottom: '20px', textAlign: 'left' }}>
             <h4 style={{ margin: '0 0 8px', fontSize: '13px', color: '#64798a', fontWeight: 700 }}>결제 대상 상품</h4>
             <p style={{ margin: '0 0 12px', fontSize: '15px', color: '#10202b', fontWeight: 800 }}>아레나 수경 외 총 {itemCount}개 상품</p>
-            <div style={{ borderTop: '1px dashed #e1eaf0', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ borderTop: '1px dashed #10202b', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '13px', color: '#10202b', fontWeight: 700 }}>최종 결제 금액</span>
               <span style={{ fontSize: '18px', color: '#002b49', fontWeight: 900 }}>{totalPrice.toLocaleString()}원</span>
             </div>
@@ -1729,6 +1942,13 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ onClose, onPaymentSu
                 <div className="check-circle">{method === 'easy' && '✓'}</div>
                 카카오페이 / 네이버페이 간편결제
               </PaymentMethodOption>
+              <PaymentMethodOption $isSelected={method === 'toss'} onClick={() => setMethod('toss')} style={{ border: method === 'toss' ? '2px solid #0064FF' : undefined, background: method === 'toss' ? '#f0f6ff' : undefined }}>
+                <div className="check-circle" style={{ borderColor: method === 'toss' ? '#0064FF' : undefined, background: method === 'toss' ? '#0064FF' : undefined }}>
+                  {method === 'toss' && '✓'}
+                </div>
+                <TossPayBadge>toss</TossPayBadge>
+                <span style={{ fontWeight: 800 }}>토스 간편결제</span>
+              </PaymentMethodOption>
               <PaymentMethodOption $isSelected={method === 'bank'} onClick={() => setMethod('bank')}>
                 <div className="check-circle">{method === 'bank' && '✓'}</div>
                 무통장 입금
@@ -1737,7 +1957,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ onClose, onPaymentSu
           </InputGroup>
 
           {/* 배송 메시지 */}
-          <InputGroup style={{ marginBottom: '24px' }}>
+          <InputGroup style={{ marginBottom: '20px' }}>
             <label>배송 요청사항</label>
             <select value={deliveryMsg} onChange={(e) => setDeliveryMsg(e.target.value)}>
               <option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
@@ -1747,10 +1967,42 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ onClose, onPaymentSu
             </select>
           </InputGroup>
 
-          {/* 결제 버튼 */}
-          <SubmitButton onClick={() => onPaymentSuccess(deliveryMsg)} style={{ marginTop: '0' }}>
-            결제 완료하기
-          </SubmitButton>
+          {/* 토스 결제 선택 시 전용 UI */}
+          {method === 'toss' && (
+            <>
+              <TossPayInfoBox>
+                <div className="toss-info-title">
+                  <TossPayBadge>toss</TossPayBadge>
+                  토스 간편결제 안내
+                </div>
+                <div className="toss-info-list">
+                  <div className="toss-info-item">
+                    <span className="dot" />
+                    토스 앱 없이도 카드로 간편하게 결제할 수 있습니다.
+                  </div>
+                  <div className="toss-info-item">
+                    <span className="dot" />
+                    토스머니, 계좌이체, 신용/체크카드 모두 지원합니다.
+                  </div>
+                  <div className="toss-info-item">
+                    <span className="dot" />
+                    결제 후 즉시 주문이 확정됩니다.
+                  </div>
+                </div>
+              </TossPayInfoBox>
+              <TossPayButton id="btn-toss-pay" onClick={() => handleGeneralPayment('toss')} disabled={isTossProcessing}>
+                <span className="toss-logo-text">toss</span>
+                로 {totalPrice.toLocaleString()}원 결제하기
+              </TossPayButton>
+            </>
+          )}
+
+          {/* 일반 결제 버튼 (토스 외) */}
+          {method !== 'toss' && (
+            <SubmitButton onClick={() => handleGeneralPayment(method)} style={{ marginTop: '0' }} disabled={isTossProcessing}>
+              결제 완료하기
+            </SubmitButton>
+          )}
         </ModalBody>
       </ModalCard>
     </ModalOverlay>,

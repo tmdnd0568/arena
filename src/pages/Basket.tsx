@@ -359,13 +359,11 @@ const Basket: React.FC = () => {
     setIsPaymentModalOpen(true);
   };
 
-  const handlePaymentSuccess = (deliveryMsg: string) => {
+  const handlePaymentSuccess = () => {
     setIsPaymentModalOpen(false);
     clearCart();
-    alert(
-      `[결제 성공]\n\n최종 결제 금액 ${subtotal.toLocaleString()}원이 안전하게 결제 완료되었습니다.\n배송 메시지: "${deliveryMsg}"\n\n아레나 상품을 이용해주셔서 감사합니다.`
-    );
-    navigate('/');
+    // 결제 완료 시 alert(모달 페이지) 없이, 바로 성공 페이지로 이동
+    navigate(`/payment/success?orderId=DIRECT-${Math.random().toString(36).substring(2, 11).toUpperCase()}&amount=${subtotal}`);
   };
 
   // 장바구니 계산 (전부 체크 해제된 항목 제외 및 합산)
