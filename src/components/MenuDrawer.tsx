@@ -41,24 +41,26 @@ const DrawerHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #eceff2;
-  background: ${({ theme }) => theme.colors.white};
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  background: #00223d;
   flex-shrink: 0;
 
   .logo-img {
     height: 24px;
     object-fit: contain;
+    filter: brightness(0) invert(1);
   }
 `;
 
 const CloseButton = styled.button`
   width: 28px;
   height: 28px;
-  color: #10202b;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: opacity 0.15s ease;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.7;
