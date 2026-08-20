@@ -450,7 +450,7 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
         <DrawerContainer $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
           <DrawerHeader>
             <div className="logo-wrapper">
-              <img src="/images/arena_02.png" alt="ARENA 로고" className="logo-img" />
+              <img src="/images/arena_01_01.png" alt="ARENA 로고" className="logo-img" />
             </div>
             <CloseButton onClick={onClose} aria-label="메뉴 닫기">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
