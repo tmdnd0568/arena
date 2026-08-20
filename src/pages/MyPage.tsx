@@ -13,20 +13,216 @@ const Container = styled.div`
   text-align: left;
 `;
 
+const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  background: #ffffff;
+  min-height: 80vh;
+  text-align: center;
+
+  .login-card {
+    max-width: 420px;
+    width: 100%;
+    padding: 40px 32px;
+    border-radius: 24px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 43, 73, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 48px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-family: ${({ theme }) => theme.fonts.jua};
+    font-size: 24px;
+    color: #10202b;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  p {
+    font-size: 14px;
+    color: ${({ theme }) => theme.colors.textMuted};
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .login-button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .google-login-btn, .apple-login-btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1.5px solid #cbd5e1;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .google-login-btn {
+    background: #ffffff;
+    color: #1f2937;
+
+    &:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+      transform: translateY(-1px);
+    }
+  }
+
+  .apple-login-btn {
+    background: #000000;
+    color: #ffffff;
+    border-color: #000000;
+
+    &:hover {
+      background: #1f2937;
+      border-color: #1f2937;
+      transform: translateY(-1px);
+    }
+  }
+`;
+
 const HeaderSection = styled.div`
   padding: 28px 20px 10px;
   background: #f8fafc;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   
-  h2 {
-    font-family: ${({ theme }) => theme.fonts.jua};
-    font-size: 26px;
-    color: #10202b;
-    font-weight: 400;
-    margin-bottom: 6px;
+  .title-area {
+    h2 {
+      font-family: ${({ theme }) => theme.fonts.jua};
+      font-size: 26px;
+      color: #10202b;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+    p {
+      font-size: 13px;
+      color: ${({ theme }) => theme.colors.textMuted};
+    }
   }
-  p {
-    font-size: 13px;
-    color: ${({ theme }) => theme.colors.textMuted};
+`;
+
+const UserProfileCard = styled.div`
+  background: #ffffff;
+  border: 1.5px solid #c8d3db;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 43, 73, 0.04);
+  gap: 16px;
+
+  @media ${({ theme }) => theme.media.mobile} {
+    margin: 0 12px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid ${({ theme }) => theme.colors.cyan};
+      background-color: #eceff2;
+    }
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      
+      .name-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .name {
+          font-family: ${({ theme }) => theme.fonts.jua};
+          font-size: 18px;
+          color: #10202b;
+          font-weight: 400;
+        }
+
+        .badge {
+          font-size: 11px;
+          background: rgba(0, 194, 255, 0.1);
+          color: ${({ theme }) => theme.colors.cyanDark};
+          padding: 2px 8px;
+          border-radius: 99px;
+          font-weight: 700;
+        }
+      }
+
+      .email {
+        font-size: 13px;
+        color: ${({ theme }) => theme.colors.textMuted};
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .logout-btn {
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 12px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    align-self: center;
+
+    &:hover {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    @media ${({ theme }) => theme.media.mobile} {
+      width: 100%;
+      align-self: stretch;
+      margin-top: 8px;
+      text-align: center;
+    }
   }
 `;
 
@@ -392,7 +588,7 @@ const WISH_WIDGET_DATA: Record<string, { name: string; image: string; code: stri
 
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
-  const { likedProducts, toggleLike, t } = useApp();
+  const { likedProducts, toggleLike, t, user, loading, loginWithGoogle, logout } = useApp();
 
   // 리뷰 별점 상태
   const [selectedRating, setSelectedRating] = useState(0);
@@ -443,6 +639,64 @@ const MyPage: React.FC = () => {
     navigate(`/product/${idxMap[id] ?? 0}`);
   };
 
+  if (loading) {
+    return (
+      <Container>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '80vh', fontSize: '15px', color: '#64748b' }}>
+          로딩 중...
+        </div>
+      </Container>
+    );
+  }
+
+  // 1. 비로그인 상태인 경우 로그인 화면 노출
+  if (!user) {
+    return (
+      <Container>
+        <LoginContainer>
+          <div className="login-card">
+            <img src="/images/arena_02.png" alt="ARENA Logo" className="logo-img" />
+            <h3>{t('mypage')}</h3>
+            <p>아레나 프리미엄 회원 서비스를 위해<br />원하시는 계정으로 로그인해 주세요.</p>
+            
+            <div className="login-button-group">
+              {/* Google Login */}
+              <button className="google-login-btn" onClick={loginWithGoogle}>
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path
+                    fill="#4285F4"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.66-.35-1.36-.35-2.09z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+                  />
+                </svg>
+                Google 계정으로 로그인
+              </button>
+
+              {/* Apple Login */}
+              <button className="apple-login-btn" onClick={useApp().loginWithApple}>
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                </svg>
+                Apple 계정으로 로그인
+              </button>
+            </div>
+          </div>
+        </LoginContainer>
+      </Container>
+    );
+  }
+
   // 관심장비 찜 목록 데이터가 비어있어도 예시를 보여주기 위한 처리
   const activeWishProducts = likedProducts.filter((id) => !removingWishIds.includes(id));
   const hasWishes = activeWishProducts.length > 0;
@@ -452,9 +706,32 @@ const MyPage: React.FC = () => {
     <Container>
       {/* 마이페이지 제목 헤더 */}
       <HeaderSection>
-        <h2>{t('mypage')}</h2>
-        <p>{t('myPageProfileSub')}</p>
+        <div className="title-area">
+          <h2>{t('mypage')}</h2>
+          <p>{t('myPageProfileSub')}</p>
+        </div>
       </HeaderSection>
+
+      {/* 2. 로그인된 사용자 프로필 카드 */}
+      <UserProfileCard>
+        <div className="user-info">
+          <img
+            src={user.photoURL || 'https://via.placeholder.com/150'}
+            alt={`${user.displayName} 프로필`}
+            className="avatar"
+          />
+          <div className="meta">
+            <div className="name-row">
+              <span className="name">{user.displayName || '아레나 회원'}</span>
+              <span className="badge">Premium</span>
+            </div>
+            <span className="email">{user.email}</span>
+          </div>
+        </div>
+        <button className="logout-btn" onClick={logout}>
+          로그아웃
+        </button>
+      </UserProfileCard>
 
       <ContentSection>
         {/* 최근 주문 내역 카드 */}
@@ -613,4 +890,3 @@ const MyPage: React.FC = () => {
 };
 
 export default MyPage;
-
