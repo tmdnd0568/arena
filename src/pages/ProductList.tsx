@@ -107,11 +107,11 @@ const TabBar = styled.div`
 `;
 
 const CollectionProducts = styled.section`
-  padding: 16px 20px 120px; /* 하단 스크롤 확보를 위해 패딩 증가 */
+  padding: 16px 20px 60px;
   flex: 1;
 
   @media ${({ theme }) => theme.media.mobile} {
-    padding: 12px 12px 100px; /* 모바일 하단 탭바 높이(84px) 이상으로 여백 확보 */
+    padding: 12px 12px 50px;
   }
 `;
 
