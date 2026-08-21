@@ -325,7 +325,7 @@ const BrandPanel: React.FC<BrandPanelProps> = ({ onBrandStoryClick }) => {
         {/* 원형 수영선수 이미지 */}
         <VisualCircle>
           <div className="visual-ring" aria-hidden="true" />
-          <img src="/images/swimmer.png" alt="아레나 수영 선수" className="visual-img" />
+          <img src="/images/panel_swimmer.png" alt="아레나 수영 선수" className="visual-img" />
         </VisualCircle>
 
         {/* 컨텐츠 영역 */}

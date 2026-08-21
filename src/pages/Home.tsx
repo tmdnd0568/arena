@@ -541,7 +541,7 @@ const Home: React.FC = () => {
     <Container>
       {/* 히어로 배너 */}
       <HeroBanner aria-label="히어로 배너">
-        <img src="/images/swimmer.png" alt="아레나 수영 선수" className="hero-banner__img" />
+        <img src="/images/hero_swimmer.png" alt="아레나 수영 선수" className="hero-banner__img" />
         <div className="hero-banner__bg" />
         <p className="hero-banner__badge">{t('newCollection')}</p>
         <h2 className="hero-banner__title">
@@ -660,7 +660,7 @@ const Home: React.FC = () => {
       <BrandCarousel aria-label="브랜드 스토리">
         <div className="brand-carousel__slide">
           <div className="brand-carousel__bg">
-            <img src="/images/swimmer.png" alt="" className="brand-carousel__img" />
+            <img src="/images/banner_swimmer.png" alt="" className="brand-carousel__img" />
           </div>
           <div className="brand-carousel__content">
             <h3 className="brand-carousel__title">
