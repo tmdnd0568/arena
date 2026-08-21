@@ -203,7 +203,7 @@ const UserProfileCard = styled.div`
     padding: 8px 14px;
     border-radius: 12px;
     background: #f1f5f9;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #000000;
     color: #64748b;
     font-size: 11px;
     font-weight: 700;

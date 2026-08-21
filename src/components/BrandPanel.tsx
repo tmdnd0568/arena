@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const BrandPanelContainer = styled.section`
   display: none;
@@ -199,7 +198,7 @@ const IntroBadges = styled.div`
   }
 `;
 
-const CtaButton = styled(Link)`
+const CtaButton = styled.button`
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -211,6 +210,7 @@ const CtaButton = styled(Link)`
   color: ${({ theme }) => theme.colors.navy};
   transition: background 0.2s ease, color 0.2s ease;
   text-decoration: none !important;
+  cursor: pointer;
 
   &:hover {
     background: ${({ theme }) => theme.colors.navy};
@@ -302,7 +302,11 @@ const IllustrationWrapper = styled.div`
   }
 `;
 
-const BrandPanel: React.FC = () => {
+interface BrandPanelProps {
+  onBrandStoryClick?: () => void;
+}
+
+const BrandPanel: React.FC<BrandPanelProps> = ({ onBrandStoryClick }) => {
   return (
     <BrandPanelContainer aria-label="브랜드 소개">
       {/* 장식용 원형 요소 */}
@@ -343,7 +347,7 @@ const BrandPanel: React.FC = () => {
             <span>최적의 수력학 디자인</span>
           </IntroBadges>
 
-          <CtaButton to="/products" id="btn-brand-cta">
+          <CtaButton onClick={onBrandStoryClick} id="btn-brand-cta">
             자세히 보기
             <svg className="icon-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path

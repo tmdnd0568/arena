@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
+import { BrandStoryModal } from '../components/Modals';
 
 const Container = styled.div`
   display: flex;
@@ -183,8 +184,15 @@ const ProductSection = styled.section`
     font-family: ${({ theme }) => theme.fonts.jua};
     font-size: clamp(1.4rem, 4vw + 0.3rem, 1.9rem);
     line-height: 1.15;
-    color: #10202b;
     font-weight: 400;
+
+    .title-new {
+      color: ${({ theme }) => theme.colors.cyan};
+    }
+    
+    .title-arrivals {
+      color: ${({ theme }) => theme.colors.navy};
+    }
   }
 
   .view-all {
@@ -243,6 +251,9 @@ const ProductCard = styled.li`
     .product-card__media {
       border-color: #000000;
     }
+    .product-illust {
+      transform: scale(1.06);
+    }
   }
 
   .product-card__media {
@@ -265,8 +276,9 @@ const ProductCard = styled.li`
     .product-illust {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       mix-blend-mode: multiply;
+      transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
   }
 
@@ -405,6 +417,27 @@ const BrandCarousel = styled.section`
     letter-spacing: -0.01em;
   }
 
+  .brand-carousel__cta {
+    margin-top: 14px;
+    padding: 8px 16px;
+    border-radius: ${({ theme }) => theme.radii.pill};
+    border: 1.5px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+  }
+
   .brand-carousel__dots {
     display: flex;
     justify-content: center;
@@ -490,6 +523,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const { likedProducts, toggleLike, t } = useApp();
   const [currentFilter, setCurrentFilter] = useState<'all' | 'racing' | 'openwater' | 'fitness'>('all');
+  const [isBrandStoryOpen, setIsBrandStoryOpen] = useState(false);
 
   const handleProductClick = (index: number) => {
     navigate(`/product/${index}`);
@@ -557,7 +591,11 @@ const Home: React.FC = () => {
       {/* NEW ARRIVALS */}
       <ProductSection aria-label="신상품">
         <div className="product-section__head">
-          <h2 className="product-section__title">NEW<br />ARRIVALS</h2>
+          <h2 className="product-section__title">
+            <span className="title-new">NEW</span>
+            <br />
+            <span className="title-arrivals">ARRIVALS</span>
+          </h2>
           <Link className="view-all" to="/products" id="link-view-all">
             VIEW ALL
             <svg className="icon-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -632,9 +670,19 @@ const Home: React.FC = () => {
               <br />
               탄생하다
             </h3>
+            <button className="brand-carousel__cta" onClick={() => setIsBrandStoryOpen(true)}>
+              브랜드 소개 바로가기
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
         </div>
       </BrandCarousel>
+
+      {isBrandStoryOpen && (
+        <BrandStoryModal onClose={() => setIsBrandStoryOpen(false)} />
+      )}
     </Container>
   );
 };

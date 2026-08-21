@@ -26,8 +26,7 @@ const InfoMediaBox = styled.div`
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;
-    transform: scale(1.25);
+    object-fit: cover;
     transition: opacity 0.15s ease-in-out;
   }
 `;
@@ -95,7 +94,7 @@ const InfoDetails = styled.section`
   .info-details__desc {
     font-size: 13px;
     line-height: 1.6;
-    color: ${({ theme }) => theme.colors.textMuted};
+    color: ${({ theme }) => theme.colors.navy};
     border-bottom: 1.5px solid #eceff2;
     padding-bottom: 20px;
     margin-bottom: 8px;

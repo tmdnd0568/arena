@@ -140,6 +140,9 @@ const ColCard = styled.li`
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 28px rgba(0, 43, 73, 0.15);
+    .col-illust {
+      transform: scale(1.06);
+    }
   }
 
   .col-card__media {
@@ -170,8 +173,9 @@ const ColCard = styled.li`
     .col-illust {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       mix-blend-mode: multiply;
+      transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
   }
 

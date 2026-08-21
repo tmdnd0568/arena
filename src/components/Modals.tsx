@@ -22,7 +22,6 @@ const slideUp = keyframes`
   to { transform: translateY(0); opacity: 1; }
 `;
 
-// Common Styled Components for Modals
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -38,16 +37,6 @@ const ModalOverlay = styled.div`
   padding: 16px;
   animation: ${fadeIn} 0.25s ease-out;
   box-sizing: border-box;
-
-  @media ${({ theme }) => theme.media.desktop} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    right: auto;
-    bottom: auto;
-  }
 `;
 
 const ModalCard = styled.div`
@@ -1117,40 +1106,82 @@ const StoryContainer = styled.div`
   text-align: left;
 `;
 
-const StoryHero = styled.div`
-  background: linear-gradient(135deg, #002b49 0%, #009fdb 50%, #00c2ff 100%);
-  padding: 30px 20px;
-  border-radius: 14px;
+const StoryTabRow = styled.div`
+  display: flex;
+  gap: 6px;
+  background: #eceff2;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1.5px solid #10202b;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+`;
+
+const StoryTabButton = styled.button<{ $active: boolean }>`
+  flex: 1;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  font-family: ${({ theme }) => theme.fonts.jua};
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  background: ${({ $active }) => ($active ? '#002b49' : 'transparent')};
+  color: ${({ $active }) => ($active ? '#ffffff' : '#64798a')};
+
+  &:hover {
+    background: ${({ $active }) => ($active ? '#002b49' : 'rgba(0, 43, 73, 0.05)')};
+  }
+`;
+
+const IntroHero = styled.div`
+  background: linear-gradient(135deg, #002b49 0%, #0b4a72 100%);
+  padding: 24px 20px;
+  border-radius: 16px;
   border: 1.5px solid #10202b;
   color: #ffffff;
-  margin-bottom: 24px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 20px;
+
+  .hero-tag {
+    font-size: 9px;
+    font-weight: 900;
+    color: #00c2ff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
 
   h4 {
     font-family: ${({ theme }) => theme.fonts.jua};
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 400;
-    margin: 0 0 8px;
-    line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0, 43, 73, 0.3);
+    line-height: 1.25;
+    margin: 0 0 10px;
   }
 
   p {
     font-size: 12px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
     margin: 0;
   }
+`;
 
-  .wave-bg {
-    position: absolute;
-    bottom: -10px;
-    right: -20px;
-    opacity: 0.2;
-    transform: rotate(-15deg);
-    pointer-events: none;
-  }
+const QuoteBlock = styled.blockquote`
+  border-left: 4px solid #00c2ff;
+  padding-left: 14px;
+  margin: 20px 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #002b49;
+  text-align: left;
 `;
 
 const StorySection = styled.div`
@@ -1167,46 +1198,146 @@ const StorySection = styled.div`
   }
 
   p {
-    font-size: 11.5px;
+    font-size: 12px;
     color: #64798a;
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
   }
 `;
 
-const StoryStats = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  background: #f1f5f9;
-  border-radius: 12px;
-  padding: 14px;
+const Timeline = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 20px;
+  margin: 10px 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: #e1eaf0;
+    border-left: 1px dashed #10202b;
+  }
+`;
+
+const TimelineItem = styled.div`
+  position: relative;
+  margin-bottom: 20px;
+  text-align: left;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #009fdb;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  .year {
+    font-family: ${({ theme }) => theme.fonts.jua};
+    font-size: 16px;
+    color: #009fdb;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #10202b;
+    margin-bottom: 4px;
+  }
+
+  .desc {
+    font-size: 11.5px;
+    color: #64798a;
+    line-height: 1.5;
+  }
+`;
+
+const TechGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const TechCard = styled.div`
   border: 1.5px solid #10202b;
-  margin: 10px 0 20px;
+  border-radius: 16px;
+  padding: 16px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 43, 73, 0.03);
 
-  .stat-card {
-    text-align: center;
+  .tech-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-    .num {
+    .tech-icon {
+      width: 24px;
+      height: 24px;
+      color: #009fdb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h5 {
       font-family: ${({ theme }) => theme.fonts.jua};
-      font-size: 18px;
-      color: #0b4a72;
-      margin-bottom: 2px;
+      font-size: 15px;
+      font-weight: 400;
+      color: #10202b;
+      margin: 0;
     }
+  }
 
-    .lbl {
-      font-size: 9px;
-      font-weight: 800;
-      color: #9aacb8;
-      text-transform: uppercase;
-    }
+  p {
+    font-size: 11.5px;
+    color: #64798a;
+    line-height: 1.55;
+    margin: 0;
+    text-align: left;
+  }
+`;
+
+const BrandStoryCard = styled.div`
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1.5px solid #10202b;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 43, 73, 0.15);
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  overflow: hidden;
+  animation: ${slideUp} 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-sizing: border-box;
+
+  @media ${({ theme }) => theme.media.desktop} {
+    max-width: 460px;
   }
 `;
 
 export const BrandStoryModal: React.FC<BrandStoryModalProps> = ({ onClose }) => {
+  const [activeTab, setActiveTab] = useState<'intro' | 'history' | 'tech'>('intro');
+
   return (
     <ModalOverlay onClick={onClose}>
-      <ModalCard onClick={(e) => e.stopPropagation()}>
+      <BrandStoryCard onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
           <h3>브랜드 스토리</h3>
           <button className="close-btn" onClick={onClose} aria-label="닫기">
@@ -1218,52 +1349,98 @@ export const BrandStoryModal: React.FC<BrandStoryModalProps> = ({ onClose }) => 
         </ModalHeader>
         <ModalBody>
           <StoryContainer>
-            <StoryHero>
-              <h4>WATER<br />INSTINCT</h4>
-              <p>1973년부터 이어온 물의 본능, 아레나</p>
-              <svg className="wave-bg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-              </svg>
-            </StoryHero>
+            <StoryTabRow>
+              <StoryTabButton $active={activeTab === 'intro'} onClick={() => setActiveTab('intro')}>브랜드 소개</StoryTabButton>
+              <StoryTabButton $active={activeTab === 'history'} onClick={() => setActiveTab('history')}>역사와 헤리티지</StoryTabButton>
+              <StoryTabButton $active={activeTab === 'tech'} onClick={() => setActiveTab('tech')}>독보적 기술력</StoryTabButton>
+            </StoryTabRow>
 
-            <StorySection>
-              <h5>브랜드의 탄생</h5>
-              <p>
-                아레나(ARENA)는 1972년 뮌헨 올림픽에서 전설적인 수영 선수 마크 스피츠(Mark Spitz)가 7개의 금메달을 목에 걸며 세계 최고 기록을 갱신하는 순간 탄생했습니다. 아디다스의 창립자 아들이었던 호르스트 다슬러(Horst Dassler)는 이 경이로운 장면을 목격한 후, 세계 최고의 스포츠 수영 전문 브랜드를 런칭하기로 결심하였습니다.
-              </p>
-            </StorySection>
+            {activeTab === 'intro' && (
+              <>
+                <IntroHero>
+                  <span className="hero-tag">Water Instinct</span>
+                  <h4>물의 본능, 아레나</h4>
+                  <p>1973년부터 이어온 아레나의 스토리를 소개합니다.</p>
+                </IntroHero>
+                <QuoteBlock>
+                  "아레나에게 물은 극복할 대상이 아니라, 본능적으로 교감하고 즐기는 아름다운 놀이터입니다."
+                </QuoteBlock>
+                <StorySection>
+                  <h5>글로벌 No.1 스윔웨어</h5>
+                  <p>
+                    아레나는 수영 선수 및 동호인을 위한 전문 수영복과 수영 장비, 스포츠 의류 등을 생산하는 세계적인 스포츠 브랜드입니다. 현재 이탈리아에 본사를 두고 전 세계 128개국 이상에 고품질의 퍼포먼스 스윔웨어 및 스포츠 라이프스타일 가치를 전하고 있습니다.
+                  </p>
+                </StorySection>
+              </>
+            )}
 
-            <StoryStats>
-              <div className="stat-card">
-                <div className="num">1973</div>
-                <div className="lbl">설립 년도</div>
-              </div>
-              <div className="stat-card">
-                <div className="num">50+</div>
-                <div className="lbl">수출 국가</div>
-              </div>
-              <div className="stat-card">
-                <div className="num">99%</div>
-                <div className="lbl">선수 신뢰도</div>
-              </div>
-            </StoryStats>
+            {activeTab === 'history' && (
+              <Timeline>
+                <TimelineItem>
+                  <div className="year">1972</div>
+                  <div className="title">브랜드 탄생의 영감</div>
+                  <div className="desc">
+                    뮌헨 올림픽에서 마크 스피츠의 7관왕 대기록을 현장에서 직접 목격한 아디다스 설립자의 아들 호르스트 다슬러(Horst Dassler)가 전문 수영 브랜드의 필요성을 절감하여 탄생했습니다.
+                  </div>
+                </TimelineItem>
+                <TimelineItem>
+                  <div className="year">1973</div>
+                  <div className="title">아레나 론칭 & 초경량 Skinfit® 개발</div>
+                  <div className="desc">
+                    아레나 브랜드를 정식으로 론칭하고, 단 18g 무게에 불과해 '제2의 피부'라고 극찬받은 초경량 경기용 수영복 'Skinfit®'을 첫 출시하였습니다.
+                  </div>
+                </TimelineItem>
+                <TimelineItem>
+                  <div className="year">1980</div>
+                  <div className="title">혁신적인 Flyback® 디자인 발표</div>
+                  <div className="desc">
+                    여성 수영선수들의 어깨 움직임을 극대화하여 기록을 단축해 주는 혁신적인 디자인 'Flyback®' 수영복을 전 세계 최초로 선보였습니다.
+                  </div>
+                </TimelineItem>
+                <TimelineItem>
+                  <div className="year">2009</div>
+                  <div className="title">X-Glide® 타임지 최고 발명품 선정</div>
+                  <div className="desc">
+                    물 저항을 극한으로 줄여 경기력을 폭발적으로 끌어올리는 하이테크 레이싱 슈트 'X-Glide®'를 발표하여 타임(TIME)지 선정 최고의 발명품으로 이름을 올렸습니다.
+                  </div>
+                </TimelineItem>
+              </Timeline>
+            )}
 
-            <StorySection>
-              <h5>혁신과 진화</h5>
-              <p>
-                1973년 초경량 수영복인 Skinfit® 개발을 시작으로, 아레나는 물 저항을 최소화하는 하이테크 카본 기술력의 Powerskin® 라인까지 엘리트 선수들의 경기력 극대화를 위한 연구를 멈추지 않았습니다.
-              </p>
-            </StorySection>
-
-            <StorySection>
-              <h5>물의 본능(Water Instinct)</h5>
-              <p>
-                아레나에게 물은 극복할 대상이 아니라 본능적으로 교감하고 즐기는 아름다운 놀이터입니다. 엘리트 선수의 트랙터 리부터 취미로 즐기는 일상 속 풀장까지, 물속에 있는 모든 순간의 편안함과 즐거움을 제공하는 것이 우리의 핵심 가치입니다.
-              </p>
-            </StorySection>
+            {activeTab === 'tech' && (
+              <TechGrid>
+                <TechCard>
+                  <div className="tech-header">
+                    <div className="tech-icon">🧬</div>
+                    <h5>Powerskin® Carbon</h5>
+                  </div>
+                  <p>
+                    고밀도 탄소 섬유(Carbon Fiber) 격자망을 원단 자체에 결합하여, 근육이 과하게 팽창되는 것을 막고 단단하게 압축(Compression) 지지해 주는 독보적인 엘리트 선수용 슈트 기술입니다.
+                  </p>
+                </TechCard>
+                <TechCard>
+                  <div className="tech-header">
+                    <div className="tech-icon">🛡️</div>
+                    <h5>Swipe Anti-Fog</h5>
+                  </div>
+                  <p>
+                    수경 내부에 김서림 방지 필름을 특수 처리하여, 렌즈 안쪽을 손가락으로 가볍게 문지르는 것만으로도 안티포그 코팅막이 활성화되어 성능을 최대 10배 오래 유지시켜 줍니다.
+                  </p>
+                </TechCard>
+                <TechCard>
+                  <div className="tech-header">
+                    <div className="tech-icon">⌛</div>
+                    <h5>MaxLife™ Fabric</h5>
+                  </div>
+                  <p>
+                    수영장 내부의 강력한 소독용 염소 성분에 노출되어도 원단의 수축이나 해짐 현상이 전혀 없고, 극강의 신축성과 내구성을 보장하는 아레나 독자의 프리미엄 트레이닝용 원단 기술입니다.
+                  </p>
+                </TechCard>
+              </TechGrid>
+            )}
           </StoryContainer>
         </ModalBody>
-      </ModalCard>
+      </BrandStoryCard>
     </ModalOverlay>
   );
 };

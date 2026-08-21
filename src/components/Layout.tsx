@@ -6,6 +6,7 @@ import BrandPanel from './BrandPanel';
 import Header from './Header';
 import BottomTabbar from './BottomTabbar';
 import MenuDrawer from './MenuDrawer';
+import { BrandStoryModal } from './Modals';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -78,6 +79,7 @@ const LoadingWrapper = styled.div`
 
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBrandStoryOpen, setIsBrandStoryOpen] = useState(false);
   const { loading } = useApp();
 
   // 1. Firebase Auth 상태 로딩 중일 때는 로딩 표시
@@ -89,7 +91,7 @@ const Layout: React.FC = () => {
   return (
     <LayoutContainer className="layout">
       {/* 좌측 70% 브랜드 패널 (데스크탑에서만 보임) */}
-      <BrandPanel />
+      <BrandPanel onBrandStoryClick={() => setIsBrandStoryOpen(true)} />
 
       {/* 우측 30% 서비스 패널 (모바일에서는 전체 화면) */}
       <ServicePanel className="service-panel">
@@ -109,6 +111,10 @@ const Layout: React.FC = () => {
         {/* 모바일 햄버거 메뉴 사이드바 */}
         <MenuDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       </ServicePanel>
+
+      {isBrandStoryOpen && (
+        <BrandStoryModal onClose={() => setIsBrandStoryOpen(false)} />
+      )}
     </LayoutContainer>
   );
 };
