@@ -365,7 +365,7 @@ const BasketSummarySection = styled.section`
   }
 
   @media ${({ theme }) => theme.media.mobile} {
-    padding: 20px 12px 24px;
+    padding: 20px 12px 90px; /* 모바일 하단 탭바 영역 위로 결제 버튼을 여유롭게 스크롤해 올릴 수 있도록 패딩 추가 */
   }
 `;
 
