@@ -3,6 +3,13 @@ import { createPortal } from 'react-dom';
 import styled, { keyframes } from 'styled-components';
 import { useApp } from '../context/AppContext';
 import type { LanguageType } from '../utils/i18n';
+import { 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  updateProfile, 
+  sendPasswordResetEmail 
+} from 'firebase/auth';
+import { auth } from '../lib/firebase';
 
 // Animations
 const fadeIn = keyframes`
@@ -216,7 +223,7 @@ const SocialDivider = styled.div`
   }
 `;
 
-const SocialButton = styled.button<{ $type: 'kakao' | 'google' }>`
+const SocialButton = styled.button<{ $type: 'apple' | 'google' }>`
   width: 100%;
   height: 44px;
   border-radius: 10px;
@@ -231,8 +238,8 @@ const SocialButton = styled.button<{ $type: 'kakao' | 'google' }>`
   margin-bottom: 10px;
   transition: transform 0.1s, opacity 0.15s;
 
-  background: ${({ $type }) => ($type === 'kakao' ? '#fee500' : '#ffffff')};
-  color: ${({ $type }) => ($type === 'kakao' ? '#181600' : '#10202b')};
+  background: ${({ $type }) => ($type === 'apple' ? '#000000' : '#ffffff')};
+  color: ${({ $type }) => ($type === 'apple' ? '#ffffff' : '#10202b')};
 
   &:hover {
     opacity: 0.9;
@@ -249,6 +256,7 @@ const SocialButton = styled.button<{ $type: 'kakao' | 'google' }>`
 `;
 
 export const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
+  const { loginWithGoogle, loginWithApple } = useApp();
   const [mode, setMode] = useState<'login' | 'signup' | 'find_pw'>('login');
   
   // Login Form States
@@ -264,17 +272,26 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   // Find PW States
   const [findEmail, setFindEmail] = useState('');
 
-  const handleLoginSubmit = (e: React.FormEvent) => {
+  const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
       alert('이메일과 비밀번호를 입력해주세요.');
       return;
     }
-    alert(`[로그인 완료]\n\n환영합니다! ${email} 계정으로 로그인되었습니다.`);
-    onClose();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      onClose();
+    } catch (error: any) {
+      console.error(error);
+      let errMsg = '로그인에 실패했습니다. 다시 시도해 주세요.';
+      if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+        errMsg = '이메일 또는 비밀번호가 잘못되었습니다.';
+      }
+      alert(errMsg);
+    }
   };
 
-  const handleSignupSubmit = (e: React.FormEvent) => {
+  const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!signupEmail || !signupPassword || !signupPasswordConfirm || !nickname) {
       alert('모든 필수 항목을 입력해주세요.');
@@ -284,23 +301,53 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
-    alert(`[회원가입 완료]\n\n아레나 회원이 되신 것을 축하합니다!\n로그인 후 이용해 주세요.`);
-    setMode('login');
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, signupEmail, signupPassword);
+      await updateProfile(userCredential.user, { displayName: nickname });
+      alert('회원가입이 완료되었습니다!');
+      setMode('login');
+    } catch (error: any) {
+      console.error(error);
+      let errMsg = '회원가입에 실패했습니다.';
+      if (error.code === 'auth/email-already-in-use') {
+        errMsg = '이미 사용 중인 이메일 주소입니다.';
+      }
+      alert(errMsg);
+    }
   };
 
-  const handleFindPwSubmit = (e: React.FormEvent) => {
+  const handleFindPwSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!findEmail) {
       alert('이메일을 입력해주세요.');
       return;
     }
-    alert(`[임시 이메일 발송]\n\n${findEmail} 계정으로 비밀번호 재설정 안내 메일이 발송되었습니다.`);
-    setMode('login');
+    try {
+      await sendPasswordResetEmail(auth, findEmail);
+      alert('비밀번호 재설정 링크가 이메일로 발송되었습니다.');
+      setMode('login');
+    } catch (error: any) {
+      console.error(error);
+      alert('메일 전송에 실패했습니다. 이메일 주소를 다시 확인해 주세요.');
+    }
   };
 
-  const handleSocialLogin = (platform: string) => {
-    alert(`[SNS 간편로그인]\n\n${platform} 계정 연동을 진행합니다.`);
-    onClose();
+  const handleGoogleLogin = async () => {
+    try {
+      await loginWithGoogle();
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleAppleLogin = async () => {
+    try {
+      await loginWithApple();
+      onClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -355,16 +402,31 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                 <span>또는 SNS 계정으로 로그인</span>
               </SocialDivider>
 
-              <SocialButton type="button" $type="kakao" onClick={() => handleSocialLogin('카카오')}>
+              <SocialButton type="button" $type="apple" onClick={handleAppleLogin}>
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.557 1.707 4.8 4.27 5.99l-.854 3.136c-.056.208.066.42.27.47.073.017.148.012.217-.015l3.666-2.43c.484.072.981.11 1.487.11 4.97 0 9-3.186 9-7.116C21 6.185 16.97 3 12 3z" />
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                 </svg>
-                카카오 1초 로그인
+                Apple 계정으로 로그인
               </SocialButton>
 
-              <SocialButton type="button" $type="google" onClick={() => handleSocialLogin('구글')}>
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.2-5.137 4.2-3.507 0-6.35-2.843-6.35-6.35s2.843-6.35 6.35-6.35c1.614 0 3.08.6 4.225 1.583l3.076-3.076C18.665 1.957 15.65 1 12.24 1 6.033 1 12.24s5.033 11.24 11.24 11.24c5.897 0 10.748-4.257 10.748-11.24 0-.668-.073-1.32-.196-1.955H12.24z" />
+              <SocialButton type="button" $type="google" onClick={handleGoogleLogin}>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    fill="#4285F4"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.66-.35-1.36-.35-2.09z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+                  />
                 </svg>
                 Google 계정으로 로그인
               </SocialButton>

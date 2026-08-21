@@ -52,6 +52,26 @@ const DrawerHeader = styled.header`
   }
 `;
 
+const AuthHeaderBtn = styled.button`
+  background: #00d0ff;
+  border: none;
+  color: #002b49;
+  font-family: ${({ theme }) => theme.fonts.jua};
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s;
+  box-shadow: 0 2px 0 #10202b;
+  flex-shrink: 0;
+
+  &:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 #10202b;
+  }
+`;
+
 const CloseButton = styled.button`
   width: 28px;
   height: 28px;
@@ -415,7 +435,7 @@ interface MenuDrawerProps {
 
 const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
-  const { t } = useApp();
+  const { t, user, logout } = useApp();
   const [isAccordionExpanded, setIsAccordionExpanded] = useState(true);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
 
@@ -449,8 +469,17 @@ const MenuDrawer: React.FC<MenuDrawerProps> = ({ isOpen, onClose }) => {
       <DrawerOverlay $isOpen={isOpen} onClick={onClose}>
         <DrawerContainer $isOpen={isOpen} onClick={(e) => e.stopPropagation()}>
           <DrawerHeader>
-            <div className="logo-wrapper">
+            <div className="logo-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1 }}>
               <img src="/images/arena_01_01.png" alt="ARENA 로고" className="logo-img" />
+              {!user ? (
+                <AuthHeaderBtn onClick={() => setIsLoginModalOpen(true)}>
+                  회원가입/로그인
+                </AuthHeaderBtn>
+              ) : (
+                <AuthHeaderBtn style={{ background: '#f8fafc', color: '#10202b' }} onClick={() => { logout(); onClose(); }}>
+                  로그아웃
+                </AuthHeaderBtn>
+              )}
             </div>
             <CloseButton onClick={onClose} aria-label="메뉴 닫기">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

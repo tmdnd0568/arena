@@ -6,17 +6,13 @@ import BrandPanel from './BrandPanel';
 import Header from './Header';
 import BottomTabbar from './BottomTabbar';
 import MenuDrawer from './MenuDrawer';
-import FullPageLogin from './FullPageLogin';
 
 const LayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1440px;
   min-height: 100vh;
-  margin: 0 auto;
   background: ${({ theme }) => theme.colors.white};
-  box-shadow: 0 0 60px rgba(0, 43, 73, 0.12);
 
   @media ${({ theme }) => theme.media.desktop} {
     flex-direction: row;
@@ -82,7 +78,7 @@ const LoadingWrapper = styled.div`
 
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, loading } = useApp();
+  const { loading } = useApp();
 
   // 1. Firebase Auth 상태 로딩 중일 때는 로딩 표시
   if (loading) {
@@ -97,27 +93,21 @@ const Layout: React.FC = () => {
 
       {/* 우측 30% 서비스 패널 (모바일에서는 전체 화면) */}
       <ServicePanel className="service-panel">
-        {!user ? (
-          <FullPageLogin />
-        ) : (
-          <>
-            {/* 본문 콘텐츠 스크롤 영역 */}
-            <ServiceMain className="service-main">
-              {/* 헤더: sticky top:0 으로 고정 */}
-              <StickyHeader>
-                <Header onMenuOpen={() => setIsMenuOpen(true)} />
-              </StickyHeader>
+        {/* 본문 콘텐츠 스크롤 영역 */}
+        <ServiceMain className="service-main">
+          {/* 헤더: sticky top:0 으로 고정 */}
+          <StickyHeader>
+            <Header onMenuOpen={() => setIsMenuOpen(true)} />
+          </StickyHeader>
 
-              <Outlet />
-            </ServiceMain>
+          <Outlet />
+        </ServiceMain>
 
-            {/* 하단 탭바 */}
-            <BottomTabbar />
+        {/* 하단 탭바 */}
+        <BottomTabbar />
 
-            {/* 모바일 햄버거 메뉴 사이드바 */}
-            <MenuDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-          </>
-        )}
+        {/* 모바일 햄버거 메뉴 사이드바 */}
+        <MenuDrawer isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       </ServicePanel>
     </LayoutContainer>
   );
