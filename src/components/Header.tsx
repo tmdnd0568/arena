@@ -14,6 +14,7 @@ const HeaderContainer = styled.header`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: none;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 5px;
 `;
 
 const MenuButton = styled.button`

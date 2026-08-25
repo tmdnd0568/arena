@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { ReturnRequestModal, SettingsModal, OrderHistoryModal } from '../components/Modals';
+import { 
+  ReturnRequestModal, 
+  OrderHistoryModal,
+  ProfileSettingsModal,
+  PaymentMethodsModal,
+  NotificationSettingsModal
+} from '../components/Modals';
 
 const Container = styled.div`
   display: flex;
@@ -27,7 +33,7 @@ const LoginContainer = styled.div`
     max-width: 420px;
     width: 100%;
     padding: 40px 32px;
-    border-radius: 24px;
+    border-radius: 5px;
     background: #f8fafc;
     border: 1.5px solid #e2e8f0;
     box-shadow: 0 10px 30px rgba(0, 43, 73, 0.05);
@@ -68,7 +74,7 @@ const LoginContainer = styled.div`
   .google-login-btn, .apple-login-btn {
     width: 100%;
     height: 52px;
-    border-radius: 14px;
+    border-radius: 5px;
     font-size: 15px;
     font-weight: 700;
     display: flex;
@@ -130,12 +136,30 @@ const HeaderSection = styled.div`
       color: ${({ theme }) => theme.colors.textMuted};
     }
   }
+
+  .noti-btn {
+    color: #10202b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 5px;
+    background: transparent;
+    border: none;
+    transition: opacity 0.15s ease;
+    margin-left: 16px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 `;
 
 const UserProfileCard = styled.div`
   background: #ffffff;
   border: 1.5px solid #c8d3db;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 20px;
   margin: 0 20px;
   display: flex;
@@ -186,7 +210,7 @@ const UserProfileCard = styled.div`
           background: rgba(0, 194, 255, 0.1);
           color: ${({ theme }) => theme.colors.cyanDark};
           padding: 2px 8px;
-          border-radius: 99px;
+          border-radius: 5px;
           font-weight: 700;
         }
       }
@@ -196,34 +220,6 @@ const UserProfileCard = styled.div`
         color: ${({ theme }) => theme.colors.textMuted};
         margin-top: 4px;
       }
-    }
-  }
-
-  .logout-btn {
-    padding: 8px 14px;
-    border-radius: 12px;
-    background: #f1f5f9;
-    border: 1px solid #000000;
-    color: #64748b;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1.35;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    align-self: center;
-    white-space: pre-line;
-
-    &:hover {
-      background: #e2e8f0;
-      color: #334155;
-    }
-
-    @media ${({ theme }) => theme.media.mobile} {
-      width: 100%;
-      align-self: stretch;
-      margin-top: 8px;
-      text-align: center;
     }
   }
 `;
@@ -271,7 +267,7 @@ const SectionHeader = styled.div`
 const OrderCard = styled.div`
   background: #ffffff;
   border: 1.5px solid #c8d3db;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
@@ -292,7 +288,7 @@ const OrderCard = styled.div`
       background: #eceff2;
       color: #10202b;
       padding: 3px 8px;
-      border-radius: 4px;
+      border-radius: 5px;
       font-size: 11px;
       font-weight: 800;
       margin-right: 8px;
@@ -315,7 +311,7 @@ const OrderCard = styled.div`
     .product-img-box {
       width: 72px;
       height: 72px;
-      border-radius: 12px;
+      border-radius: 5px;
       background: #f1f5f9;
       display: flex;
       align-items: center;
@@ -368,7 +364,7 @@ const OrderCard = styled.div`
 
   .review-box {
     background: #f1f5f9;
-    border-radius: 14px;
+    border-radius: 5px;
     padding: 14px 16px;
     display: flex;
     flex-direction: column;
@@ -407,7 +403,7 @@ const OrderCard = styled.div`
 
     button {
       height: 40px;
-      border-radius: 12px;
+      border-radius: 5px;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
@@ -440,7 +436,7 @@ const OrderCard = styled.div`
 const WishCard = styled.div`
   background: #ffffff;
   border: 1.5px solid #c8d3db;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 8px 16px;
   display: flex;
   flex-direction: column;
@@ -465,7 +461,7 @@ const WishItemRow = styled.div<{ $isRemoving: boolean }>`
     width: 50px;
     height: 50px;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 5px;
     background: #ffffff;
     padding: 4px;
     display: flex;
@@ -531,7 +527,7 @@ const SettingCard = styled.button`
   width: 100%;
   background: #ffffff;
   border: 1.5px solid #c8d3db;
-  border-radius: 16px;
+  border-radius: 5px;
   padding: 16px 20px;
   display: flex;
   align-items: center;
@@ -554,7 +550,7 @@ const SettingCard = styled.button`
   .icon-box {
     width: 40px;
     height: 40px;
-    border-radius: 12px;
+    border-radius: 5px;
     background: #eceff2;
     display: flex;
     align-items: center;
@@ -578,6 +574,27 @@ const SettingCard = styled.button`
       font-size: 11px;
       color: #64748b;
     }
+  }
+`;
+
+const BottomLogoutWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0 40px;
+`;
+
+const BottomLogoutBtn = styled.button`
+  font-size: 11px;
+  font-weight: 700;
+  color: #000000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #ff4b4b;
   }
 `;
 
@@ -605,15 +622,19 @@ const MyPage: React.FC = () => {
   // 주문/환불 내역 모달 상태
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
 
-  // 설정 모달 상태
-  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+  // 설정 모달 상태 분리
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
 
   const handleReturnClick = () => {
     setIsReturnModalOpen(true);
   };
 
-  const handleSettingCardClick = (_tab: 'profile' | 'payment' | 'notification') => {
-    setIsSettingsModalOpen(true);
+  const handleSettingCardClick = (tab: 'profile' | 'payment' | 'notification') => {
+    if (tab === 'profile') setIsProfileModalOpen(true);
+    if (tab === 'payment') setIsPaymentModalOpen(true);
+    if (tab === 'notification') setIsNotifModalOpen(true);
   };
 
   const handleReviewSubmit = () => {
@@ -712,6 +733,13 @@ const MyPage: React.FC = () => {
           <h2>{t('mypage')}</h2>
           <p>{t('myPageProfileSub')}</p>
         </div>
+        {/* 알림 버튼 */}
+        <button className="noti-btn" onClick={() => handleSettingCardClick('notification')} aria-label="알림">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+        </button>
       </HeaderSection>
 
       {/* 2. 로그인된 사용자 프로필 카드 */}
@@ -730,9 +758,6 @@ const MyPage: React.FC = () => {
             <span className="email">{user.email}</span>
           </div>
         </div>
-        <button className="logout-btn" onClick={logout}>
-          로그<br />아웃
-        </button>
       </UserProfileCard>
 
       <ContentSection>
@@ -871,6 +896,13 @@ const MyPage: React.FC = () => {
             </SettingCard>
           </SettingsContainer>
         </div>
+
+        {/* 하단 로그아웃 버튼 */}
+        <BottomLogoutWrapper>
+          <BottomLogoutBtn onClick={logout}>
+            로그아웃
+          </BottomLogoutBtn>
+        </BottomLogoutWrapper>
       </ContentSection>
 
       {/* 교환/반품 모달 */}
@@ -878,9 +910,19 @@ const MyPage: React.FC = () => {
         <ReturnRequestModal onClose={() => setIsReturnModalOpen(false)} />
       )}
 
-      {/* 설정 모달 */}
-      {isSettingsModalOpen && (
-        <SettingsModal onClose={() => setIsSettingsModalOpen(false)} />
+      {/* 개인정보 설정 모달 */}
+      {isProfileModalOpen && (
+        <ProfileSettingsModal onClose={() => setIsProfileModalOpen(false)} />
+      )}
+
+      {/* 결제수단 관리 모달 */}
+      {isPaymentModalOpen && (
+        <PaymentMethodsModal onClose={() => setIsPaymentModalOpen(false)} />
+      )}
+
+      {/* 알림 설정 모달 */}
+      {isNotifModalOpen && (
+        <NotificationSettingsModal onClose={() => setIsNotifModalOpen(false)} />
       )}
 
       {/* 주문/환불 내역 모달 */}

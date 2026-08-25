@@ -44,7 +44,7 @@ const ModalCard = styled.div`
   max-width: 360px;
   background: #ffffff;
   border: 1.5px solid #10202b;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0 12px 32px rgba(0, 43, 73, 0.15);
   display: flex;
   flex-direction: column;
@@ -104,7 +104,7 @@ const ModalBody = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     background: #cbd5e1;
-    border-radius: 3px;
+    border-radius: 5px;
   }
 `;
 
@@ -132,7 +132,7 @@ const InputGroup = styled.div`
     width: 100%;
     height: 44px;
     border: 1.5px solid #10202b;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0 14px;
     font-size: 13px;
     font-weight: 500;
@@ -150,7 +150,7 @@ const InputGroup = styled.div`
 const SubmitButton = styled.button`
   width: 100%;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 5px;
   border: 1.5px solid #10202b;
   background: #002b49;
   color: #ffffff;
@@ -215,7 +215,7 @@ const SocialDivider = styled.div`
 const SocialButton = styled.button<{ $type: 'apple' | 'google' }>`
   width: 100%;
   height: 44px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1.5px solid #10202b;
   display: flex;
   align-items: center;
@@ -518,7 +518,7 @@ const TabRow = styled.div`
   gap: 4px;
   background: #eceff2;
   padding: 4px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 16px;
   border: 1.5px solid #10202b;
 `;
@@ -526,7 +526,7 @@ const TabRow = styled.div`
 const TabButton = styled.button<{ $active: boolean }>`
   flex: 1;
   height: 32px;
-  border-radius: 7px;
+  border-radius: 5px;
   border: none;
   font-size: 11px;
   font-weight: 700;
@@ -549,7 +549,7 @@ const SearchBox = styled.div`
     width: 100%;
     height: 38px;
     border: 1.5px solid #10202b;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0 38px 0 12px;
     font-size: 12px;
     box-sizing: border-box;
@@ -571,7 +571,7 @@ const SearchBox = styled.div`
 
 const StoreItem = styled.div`
   border: 1.5px solid #10202b;
-  border-radius: 12px;
+  border-radius: 5px;
   background: #ffffff;
   padding: 14px;
   margin-bottom: 12px;
@@ -586,7 +586,7 @@ const StoreItem = styled.div`
   .tag {
     display: inline-block;
     padding: 2px 6px;
-    border-radius: 4px;
+    border-radius: 5px;
     background: #eaf3f8;
     color: #0b4a72;
     font-size: 10px;
@@ -727,7 +727,7 @@ interface CustomerCenterModalProps {
 
 const CenterBanner = styled.div`
   background: #002b49;
-  border-radius: 12px;
+  border-radius: 5px;
   border: 1.5px solid #10202b;
   padding: 16px;
   color: #ffffff;
@@ -756,7 +756,7 @@ const CenterBanner = styled.div`
 
 const AccordionItem = styled.div<{ $isExpanded: boolean }>`
   border: 1.5px solid #10202b;
-  border-radius: 12px;
+  border-radius: 5px;
   background: #ffffff;
   margin-bottom: 8px;
   overflow: hidden;
@@ -818,7 +818,7 @@ const TextArea = styled.textarea`
   width: 100%;
   height: 90px;
   border: 1.5px solid #10202b;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 12px;
   font-size: 12px;
   font-family: inherit;
@@ -1111,7 +1111,7 @@ const StoryTabRow = styled.div`
   gap: 6px;
   background: #eceff2;
   padding: 4px;
-  border-radius: 12px;
+  border-radius: 5px;
   border: 1.5px solid #10202b;
   margin-bottom: 20px;
   flex-shrink: 0;
@@ -1120,7 +1120,7 @@ const StoryTabRow = styled.div`
 const StoryTabButton = styled.button<{ $active: boolean }>`
   flex: 1;
   height: 36px;
-  border-radius: 8px;
+  border-radius: 5px;
   border: none;
   font-family: ${({ theme }) => theme.fonts.jua};
   font-size: 13px;
@@ -1140,7 +1140,7 @@ const StoryTabButton = styled.button<{ $active: boolean }>`
 const IntroHero = styled.div`
   background: linear-gradient(135deg, #002b49 0%, #0b4a72 100%);
   padding: 24px 20px;
-  border-radius: 16px;
+  border-radius: 5px;
   border: 1.5px solid #10202b;
   color: #ffffff;
   position: relative;
@@ -1273,7 +1273,7 @@ const TechGrid = styled.div`
 
 const TechCard = styled.div`
   border: 1.5px solid #10202b;
-  border-radius: 16px;
+  border-radius: 5px;
   padding: 16px;
   background: #ffffff;
   display: flex;
@@ -1318,7 +1318,7 @@ const BrandStoryCard = styled.div`
   max-width: 440px;
   background: #ffffff;
   border: 1.5px solid #10202b;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0 12px 32px rgba(0, 43, 73, 0.15);
   display: flex;
   flex-direction: column;
@@ -1542,7 +1542,7 @@ const SettingRow = styled.div`
   select {
     height: 32px;
     border: 1.5px solid #10202b;
-    border-radius: 6px;
+    border-radius: 5px;
     padding: 0 8px;
     font-size: 12px;
     font-weight: 700;
@@ -1559,7 +1559,7 @@ const SettingRow = styled.div`
   .action-btn {
     height: 32px;
     border: 1.5px solid #10202b;
-    border-radius: 6px;
+    border-radius: 5px;
     background: #ffffff;
     color: #10202b;
     padding: 0 12px;
@@ -1698,7 +1698,7 @@ const ReturnOptionGroup = styled.div`
 const ReturnTypeChip = styled.button<{ $isActive: boolean }>`
   flex: 1;
   height: 44px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1.5px solid ${({ $isActive, theme }) => ($isActive ? '#10202b' : theme.colors.border)};
   background: ${({ $isActive, theme }) => ($isActive ? theme.colors.navy : '#ffffff')};
   color: ${({ $isActive, theme }) => ($isActive ? '#ffffff' : theme.colors.textMuted)};
@@ -1716,7 +1716,7 @@ const ProductInfoCard = styled.div`
   gap: 12px;
   padding: 12px;
   background: #f8fafc;
-  border-radius: 12px;
+  border-radius: 5px;
   border: 1px solid ${({ theme }) => theme.colors.border};
   margin-bottom: 20px;
   align-items: center;
@@ -1725,7 +1725,7 @@ const ProductInfoCard = styled.div`
     width: 60px;
     height: 60px;
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: 5px;
     border: 1px solid ${({ theme }) => theme.colors.border};
     display: flex;
     align-items: center;
@@ -1763,7 +1763,7 @@ const Textarea = styled.textarea`
   width: 100%;
   height: 90px;
   border: 1.5px solid #10202b;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 12px;
   font-size: 13px;
   font-weight: 500;
@@ -1901,7 +1901,7 @@ const PaymentMethodGroup = styled.div`
 const PaymentMethodOption = styled.button<{ $isSelected: boolean }>`
   width: 100%;
   height: 48px;
-  border-radius: 12px;
+  border-radius: 5px;
   border: 1.5px solid ${({ $isSelected, theme }) => ($isSelected ? '#10202b' : theme.colors.border)};
   background: ${({ $isSelected }) => ($isSelected ? '#f5fafd' : '#ffffff')};
   color: #10202b;
@@ -1932,7 +1932,7 @@ const PaymentMethodOption = styled.button<{ $isSelected: boolean }>`
 const TossPayButton = styled.button`
   width: 100%;
   height: 54px;
-  border-radius: 12px;
+  border-radius: 5px;
   border: none;
   background: #0064FF;
   color: #ffffff;
@@ -1972,7 +1972,7 @@ const TossPayBadge = styled.div`
   justify-content: center;
   background: #0064FF;
   color: #fff;
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 2px 8px;
   font-size: 13px;
   font-weight: 900;
@@ -1984,7 +1984,7 @@ const TossPayBadge = styled.div`
 const TossPayInfoBox = styled.div`
   background: #f0f6ff;
   border: 1.5px solid #c2d9ff;
-  border-radius: 12px;
+  border-radius: 5px;
   padding: 14px 16px;
   margin-top: 12px;
   margin-bottom: 4px;
@@ -2031,7 +2031,7 @@ const TossProcessingOverlay = styled.div`
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.96);
-  border-radius: 20px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2284,7 +2284,7 @@ const HistoryTabButton = styled.button<{ $isActive: boolean }>`
 const OrderHistoryCard = styled.div`
   background: #ffffff;
   border: 1.5px solid #c8d3db;
-  border-radius: 16px;
+  border-radius: 5px;
   padding: 16px;
   margin-bottom: 12px;
   display: flex;
@@ -2304,7 +2304,7 @@ const OrderHistoryCard = styled.div`
 
     .status-tag {
       padding: 3px 8px;
-      border-radius: 4px;
+      border-radius: 5px;
       font-size: 10px;
       font-weight: 800;
       text-transform: uppercase;
@@ -2332,7 +2332,7 @@ const OrderHistoryCard = styled.div`
     .img-box {
       width: 60px;
       height: 60px;
-      border-radius: 8px;
+      border-radius: 5px;
       background: #f1f5f9;
       display: flex;
       align-items: center;
@@ -2514,6 +2514,440 @@ export const OrderHistoryModal: React.FC<OrderHistoryModalProps> = ({ onClose })
               </OrderHistoryCard>
             ))
           )}
+        </ModalBody>
+      </ModalCard>
+    </ModalOverlay>,
+    document.querySelector('.service-panel') || document.body
+  );
+};
+
+
+// ==========================================
+// 12. PROFILE SETTINGS MODAL (개인정보 설정)
+// ==========================================
+interface ProfileSettingsModalProps {
+  onClose: () => void;
+}
+
+const AvatarSelectionGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const AvatarOption = styled.button<{ $isSelected: boolean }>`
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid ${({ $isSelected, theme }) => ($isSelected ? theme.colors.cyan : '#eceff2')};
+  overflow: hidden;
+  padding: 2px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s;
+
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+`;
+
+export const ProfileSettingsModal: React.FC<ProfileSettingsModalProps> = ({ onClose }) => {
+  const { user } = useApp();
+  const [nickname, setNickname] = useState(user?.displayName || '아레나 회원');
+  const [bio, setBio] = useState('수영을 사랑하는 프리미엄 멤버');
+  const [selectedAvatar, setSelectedAvatar] = useState(user?.photoURL || '/images/avatar_default.png');
+
+  const avatarOptions = [
+    '/images/avatar_default.png',
+    'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop',
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
+  ];
+
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!nickname.trim()) {
+      alert('닉네임을 입력해 주세요.');
+      return;
+    }
+    alert('개인정보 및 프로필 설정이 성공적으로 저장되었습니다.');
+    onClose();
+  };
+
+  return createPortal(
+    <ModalOverlay onClick={onClose}>
+      <ModalCard onClick={(e) => e.stopPropagation()}>
+        <ModalHeader>
+          <h3>개인정보 설정</h3>
+          <button className="close-btn" onClick={onClose} aria-label="닫기">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </ModalHeader>
+        <ModalBody>
+          <form onSubmit={handleSave}>
+            <div style={{ textAlign: 'left', marginBottom: '10px' }}>
+              <label style={{ fontSize: '12px', fontWeight: 700, color: '#002b49' }}>프로필 아바타 선택</label>
+            </div>
+            <AvatarSelectionGrid>
+              {avatarOptions.map((url, idx) => (
+                <AvatarOption
+                  key={idx}
+                  type="button"
+                  $isSelected={selectedAvatar === url}
+                  onClick={() => setSelectedAvatar(url)}
+                >
+                  <img src={url} alt={`아바타 옵션 ${idx + 1}`} onError={(e) => { (e.target as HTMLImageElement).src = 'https://via.placeholder.com/100' }} />
+                </AvatarOption>
+              ))}
+            </AvatarSelectionGrid>
+
+            <InputGroup>
+              <label htmlFor="profile-email">이메일 주소</label>
+              <input
+                id="profile-email"
+                type="email"
+                value={user?.email || 'guest@arena.co.kr'}
+                disabled
+                style={{ background: '#f1f5f9', color: '#64748b', cursor: 'not-allowed' }}
+              />
+            </InputGroup>
+
+            <InputGroup>
+              <label htmlFor="profile-nickname">닉네임</label>
+              <input
+                id="profile-nickname"
+                type="text"
+                placeholder="닉네임 입력"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+                required
+              />
+            </InputGroup>
+
+            <InputGroup>
+              <label htmlFor="profile-bio">한 줄 소개</label>
+              <input
+                id="profile-bio"
+                type="text"
+                placeholder="소개글 입력"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+              />
+            </InputGroup>
+
+            <SubmitButton type="submit">변경사항 저장</SubmitButton>
+          </form>
+        </ModalBody>
+      </ModalCard>
+    </ModalOverlay>,
+    document.querySelector('.service-panel') || document.body
+  );
+};
+
+
+// ==========================================
+// 13. PAYMENT METHODS MODAL (결제수단 관리)
+// ==========================================
+interface PaymentMethodsModalProps {
+  onClose: () => void;
+}
+
+const CardList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+`;
+
+const PaymentCardItem = styled.div`
+  border: 1.5px solid #10202b;
+  border-radius: 5px;
+  background: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+
+  .card-info {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .card-icon {
+      font-size: 24px;
+    }
+
+    .name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #10202b;
+    }
+
+    .number {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+  }
+
+  .delete-btn {
+    background: transparent;
+    border: none;
+    color: #ff4b4b;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 5px;
+
+    &:hover {
+      background: rgba(255, 75, 75, 0.05);
+    }
+  }
+`;
+
+const AddCardForm = styled.form`
+  border-top: 1.5px dashed #cbd5e1;
+  padding-top: 20px;
+  margin-top: 10px;
+  text-align: left;
+
+  h4 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #002b49;
+    margin: 0 0 14px;
+  }
+`;
+
+export const PaymentMethodsModal: React.FC<PaymentMethodsModalProps> = ({ onClose }) => {
+  const [cards, setCards] = useState([
+    { id: '1', bank: '신한카드', number: '****-****-****-4321', type: '💳' },
+    { id: '2', bank: '국민카드', number: '****-****-****-8765', type: '💳' }
+  ]);
+  const [newBank, setNewBank] = useState('신한카드');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiry, setExpiry] = useState('');
+  const [cvc, setCvc] = useState('');
+
+  const handleAddCard = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!cardNumber || !expiry || !cvc) {
+      alert('카드 정보를 모두 입력해 주세요.');
+      return;
+    }
+    const maskedNumber = `****-****-****-${cardNumber.slice(-4) || '1111'}`;
+    const newCard = {
+      id: Date.now().toString(),
+      bank: newBank,
+      number: maskedNumber,
+      type: '💳'
+    };
+    setCards([...cards, newCard]);
+    setCardNumber('');
+    setExpiry('');
+    setCvc('');
+    alert('새로운 결제 카드가 성공적으로 등록되었습니다.');
+  };
+
+  const handleDeleteCard = (id: string, bank: string) => {
+    if (window.confirm(`'${bank}' 결제 수단을 삭제하시겠습니까?`)) {
+      setCards(cards.filter(c => c.id !== id));
+    }
+  };
+
+  return createPortal(
+    <ModalOverlay onClick={onClose}>
+      <ModalCard onClick={(e) => e.stopPropagation()}>
+        <ModalHeader>
+          <h3>결제수단 관리</h3>
+          <button className="close-btn" onClick={onClose} aria-label="닫기">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </ModalHeader>
+        <ModalBody>
+          <div style={{ textAlign: 'left', marginBottom: '10px' }}>
+            <label style={{ fontSize: '12px', fontWeight: 700, color: '#002b49' }}>등록된 결제수단</label>
+          </div>
+          {cards.length === 0 ? (
+            <p style={{ textAlign: 'center', color: '#9aacb8', fontSize: '12px', padding: '24px 0' }}>
+              등록된 결제수단이 없습니다. 아래에서 카드를 추가해 보세요.
+            </p>
+          ) : (
+            <CardList>
+              {cards.map(card => (
+                <PaymentCardItem key={card.id}>
+                  <div className="card-info">
+                    <span className="card-icon">{card.type}</span>
+                    <div>
+                      <div className="name">{card.bank}</div>
+                      <div className="number">{card.number}</div>
+                    </div>
+                  </div>
+                  <button className="delete-btn" onClick={() => handleDeleteCard(card.id, card.bank)}>삭제</button>
+                </PaymentCardItem>
+              ))}
+            </CardList>
+          )}
+
+          <AddCardForm onSubmit={handleAddCard}>
+            <h4>💳 새 간편결제 카드 추가</h4>
+            <InputGroup>
+              <label htmlFor="card-bank">카드사 선택</label>
+              <select id="card-bank" value={newBank} onChange={(e) => setNewBank(e.target.value)}>
+                <option value="신한카드">신한카드</option>
+                <option value="국민카드">국민카드</option>
+                <option value="삼성카드">삼성카드</option>
+                <option value="현대카드">현대카드</option>
+                <option value="비씨카드">비씨카드</option>
+              </select>
+            </InputGroup>
+
+            <InputGroup>
+              <label htmlFor="card-number">카드 번호</label>
+              <input
+                id="card-number"
+                type="text"
+                placeholder="1234-5678-1234-5678"
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+                maxLength={19}
+                required
+              />
+            </InputGroup>
+
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <InputGroup style={{ flex: 1 }}>
+                <label htmlFor="card-expiry">유효기간</label>
+                <input
+                  id="card-expiry"
+                  type="text"
+                  placeholder="MM/YY"
+                  value={expiry}
+                  onChange={(e) => setExpiry(e.target.value)}
+                  maxLength={5}
+                  required
+                />
+              </InputGroup>
+              <InputGroup style={{ flex: 1 }}>
+                <label htmlFor="card-cvc">CVC</label>
+                <input
+                  id="card-cvc"
+                  type="password"
+                  placeholder="3자리 숫자"
+                  value={cvc}
+                  onChange={(e) => setCvc(e.target.value)}
+                  maxLength={3}
+                  required
+                />
+              </InputGroup>
+            </div>
+
+            <SubmitButton type="submit">새 카드 등록하기</SubmitButton>
+          </AddCardForm>
+        </ModalBody>
+      </ModalCard>
+    </ModalOverlay>,
+    document.querySelector('.service-panel') || document.body
+  );
+};
+
+
+// ==========================================
+// 14. NOTIFICATION SETTINGS MODAL (알림 설정)
+// ==========================================
+interface NotificationSettingsModalProps {
+  onClose: () => void;
+}
+
+export const NotificationSettingsModal: React.FC<NotificationSettingsModalProps> = ({ onClose }) => {
+  const [pushNotif, setPushNotif] = useState(true);
+  const [nightSilent, setNightSilent] = useState(false);
+  const [marketingNotif, setMarketingNotif] = useState(true);
+  const [orderNotif, setOrderNotif] = useState(true);
+
+  const handleSave = () => {
+    alert('알림 설정이 성공적으로 저장되었습니다.');
+    onClose();
+  };
+
+  return createPortal(
+    <ModalOverlay onClick={onClose}>
+      <ModalCard onClick={(e) => e.stopPropagation()}>
+        <ModalHeader>
+          <h3>알림 설정</h3>
+          <button className="close-btn" onClick={onClose} aria-label="닫기">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </ModalHeader>
+        <ModalBody>
+          <SettingSection>
+            <div className="sec-title">기본 알림 수신 설정</div>
+            <SettingRow>
+              <div className="lbl-group">
+                <h4>쇼핑 푸시 알림</h4>
+                <p>신상품 출시 및 스페셜 컬렉션 소식을 알려드립니다.</p>
+              </div>
+              <ToggleSwitch>
+                <input type="checkbox" checked={pushNotif} onChange={(e) => setPushNotif(e.target.checked)} />
+                <span className="slider"></span>
+              </ToggleSwitch>
+            </SettingRow>
+            <SettingRow>
+              <div className="lbl-group">
+                <h4>야간 알림 제한 수신</h4>
+                <p>밤 9시부터 아침 8시까지 푸시 소리를 차단합니다.</p>
+              </div>
+              <ToggleSwitch>
+                <input type="checkbox" checked={nightSilent} onChange={(e) => setNightSilent(e.target.checked)} />
+                <span className="slider"></span>
+              </ToggleSwitch>
+            </SettingRow>
+            <SettingRow>
+              <div className="lbl-group">
+                <h4>주문/배송 알림</h4>
+                <p>수경 배송 추적 및 입금 상태 알림을 수신합니다.</p>
+              </div>
+              <ToggleSwitch>
+                <input type="checkbox" checked={orderNotif} onChange={(e) => setOrderNotif(e.target.checked)} />
+                <span className="slider"></span>
+              </ToggleSwitch>
+            </SettingRow>
+          </SettingSection>
+
+          <SettingSection>
+            <div className="sec-title">마케팅 정보 활용</div>
+            <SettingRow>
+              <div className="lbl-group">
+                <h4>마케팅/이벤트 알림</h4>
+                <p>아레나 프리미엄 할인 혜택 프로모션 알림 수신</p>
+              </div>
+              <ToggleSwitch>
+                <input type="checkbox" checked={marketingNotif} onChange={(e) => setMarketingNotif(e.target.checked)} />
+                <span className="slider"></span>
+              </ToggleSwitch>
+            </SettingRow>
+          </SettingSection>
+
+          <SubmitButton onClick={handleSave} style={{ marginTop: '20px' }}>설정 저장하기</SubmitButton>
         </ModalBody>
       </ModalCard>
     </ModalOverlay>,

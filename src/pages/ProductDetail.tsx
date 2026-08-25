@@ -277,23 +277,29 @@ const DeliveryContent = styled.div`
 const SubmitCartButton = styled.button`
   width: 100%;
   height: 52px;
-  border-radius: 14px;
-  border: 1.5px solid #10202b;
+  border-radius: 5px;
+  border: none;
   background: #00d0ff;
   color: #002b49;
-  font-weight: 900;
+  font-family: ${({ theme }) => theme.fonts.jua};
+  font-weight: 400;
   font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 0 #10202b;
-  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 12px rgba(0, 43, 73, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   margin-bottom: 40px;
 
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 43, 73, 0.22);
+  }
+
   &:active {
-    transform: translateY(4px);
-    box-shadow: 0 0px 0 #10202b;
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 43, 73, 0.15);
   }
 `;
 
@@ -659,7 +665,7 @@ const ProductDetail: React.FC = () => {
               </SpecAccordion>
 
               {/* 4. 안티포그 (비드롭다운 고정 정보) */}
-              <SpecAccordion className="spec-accordion">
+              <SpecAccordion className="spec-accordion" style={{ border: 'none', background: 'transparent' }}>
                 <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column' }}>
                   <span className="label" style={{ fontSize: '11px', fontWeight: 800, color: '#9AACB8', textTransform: 'uppercase', marginBottom: '2px' }}>
                     김서림 방지 (Anti-Fog)

@@ -54,7 +54,7 @@ const BasketCard = styled.li<{ $isRemoving: boolean }>`
   display: flex;
   padding: 16px;
   border: 1.5px solid #10202b;
-  border-radius: ${({ theme }) => theme.radii.md};
+  border-radius: 5px;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.card};
   gap: 16px;
@@ -67,7 +67,7 @@ const BasketCard = styled.li<{ $isRemoving: boolean }>`
     width: 90px;
     height: 90px;
     border: 1px solid ${({ theme }) => theme.colors.border};
-    border-radius: 12px;
+    border-radius: 5px;
     background: #ffffff;
     padding: 6px;
     display: flex;
@@ -179,11 +179,11 @@ const BasketCard = styled.li<{ $isRemoving: boolean }>`
     display: inline-flex;
     align-items: center;
     border: 1.5px solid #10202b;
-    border-radius: 8px;
+    border-radius: 5px;
     overflow: hidden;
     height: 28px;
     background: #ffffff;
-    box-shadow: 0 2px 0 #10202b;
+    box-shadow: none;
 
     .btn-qty {
       width: 26px;
@@ -341,8 +341,8 @@ const BasketSummarySection = styled.section`
   .btn-pay {
     width: 100%;
     height: 52px;
-    border-radius: 14px;
-    border: 1.5px solid #10202b;
+    border-radius: 5px;
+    border: none;
     background: #00d0ff;
     color: #002b49;
     font-family: ${({ theme }) => theme.fonts.jua};
@@ -352,15 +352,18 @@ const BasketSummarySection = styled.section`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: none;
-    transition: opacity 0.15s, transform 0.1s;
+    box-shadow: 0 4px 12px rgba(0, 43, 73, 0.15);
+    transition: opacity 0.15s, transform 0.2s ease, box-shadow 0.2s ease;
 
     &:hover {
-      opacity: 0.9;
+      opacity: 0.95;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 43, 73, 0.22);
     }
 
     &:active {
-      transform: scale(0.98);
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 2px 8px rgba(0, 43, 73, 0.15);
     }
   }
 

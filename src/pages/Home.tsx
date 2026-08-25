@@ -137,27 +137,27 @@ const TabBar = styled.div`
     align-items: center;
     justify-content: center;
     line-height: 1;
-    padding: 10px 18px 8px; /* Jua 폰트의 하단 쏠림 현상을 완벽하게 보정하는 미세 패딩 */
-    background: #ffffff;
-    border: 1.5px solid #10202b;
-    border-radius: 14px;
+    padding: 10px 14px 6px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
     font-family: ${({ theme }) => theme.fonts.jua};
     font-size: 14px;
     font-weight: 400;
-    color: #004b87;
+    color: #8fa0ad;
     white-space: nowrap;
-    box-shadow: 0 4px 8px rgba(16, 32, 43, 0.08);
-    transition: background-color 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    box-shadow: none;
+    transition: color 0.15s, border-color 0.15s;
     cursor: pointer;
 
     &:hover {
-      border-color: #10202b;
-      background-color: #f8fafc;
+      color: #10202b;
     }
 
     &--active {
-      background: #adc8ff !important;
-      border-color: #10202b !important;
+      background: transparent !important;
+      border-bottom-color: #10202b !important;
       color: #10202b !important;
     }
 
@@ -248,9 +248,6 @@ const ProductCard = styled.li`
 
   &:hover {
     transform: translateY(-2px);
-    .product-card__media {
-      border-color: #000000;
-    }
     .product-illust {
       transform: scale(1.06);
     }
@@ -265,7 +262,7 @@ const ProductCard = styled.li`
     justify-content: center;
     position: relative;
     border: 1px solid transparent;
-    border-radius: 12px;
+    border-radius: 5px;
     overflow: hidden;
     transition: border-color 0.2s;
 

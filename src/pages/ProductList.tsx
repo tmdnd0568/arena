@@ -74,27 +74,27 @@ const TabBar = styled.div`
     align-items: center;
     justify-content: center;
     line-height: 1;
-    padding: 10px 18px 8px; /* Jua 폰트의 하단 쏠림 현상을 완벽하게 보정하는 미세 패딩 */
-    background: #ffffff;
-    border: 1.5px solid #10202b;
-    border-radius: 14px;
+    padding: 10px 14px 6px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
     font-family: ${({ theme }) => theme.fonts.jua};
     font-size: 14px;
     font-weight: 400;
-    color: #004b87;
+    color: #8fa0ad;
     white-space: nowrap;
-    box-shadow: 0 4px 8px rgba(16, 32, 43, 0.08);
-    transition: background-color 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    box-shadow: none;
+    transition: color 0.15s, border-color 0.15s;
     cursor: pointer;
 
     &:hover {
-      border-color: #10202b;
-      background-color: #f8fafc;
+      color: #10202b;
     }
 
     &--active {
-      background: #adc8ff !important;
-      border-color: #10202b !important;
+      background: transparent !important;
+      border-bottom-color: #10202b !important;
       color: #10202b !important;
     }
 
@@ -130,8 +130,8 @@ const ColCard = styled.li`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.white};
-  border: 1.5px solid #10202b;
-  border-radius: ${({ theme }) => theme.radii.md};
+  border: none;
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.card};
   transition: transform 0.2s, box-shadow 0.2s;
@@ -271,17 +271,23 @@ const ColCard = styled.li`
     width: 38px;
     height: 38px;
     border-radius: 30px 30px 30px 0;
-    border: 1.5px solid #000000;
+    border: none;
     background: #00d0ff;
     color: #002b49;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: none;
-    transition: transform 0.15s, background-color 0.15s;
+    box-shadow: 0 2px 8px rgba(0, 43, 73, 0.15);
+    transition: transform 0.2s ease, background-color 0.15s, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 43, 73, 0.22);
+    }
 
     &:active {
-      transform: scale(0.95);
+      transform: translateY(0) scale(0.95);
+      box-shadow: 0 1px 4px rgba(0, 43, 73, 0.15);
     }
 
     svg {
@@ -295,15 +301,14 @@ const LikeButton = styled.button<{ $isLiked: boolean }>`
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ $isLiked }) => ($isLiked ? '#FF4B4B' : '#10202B')};
-  box-shadow: 0 2px 8px rgba(0, 43, 73, 0.1);
   transition: transform 0.15s ease;
 
   &:hover {
@@ -311,8 +316,8 @@ const LikeButton = styled.button<{ $isLiked: boolean }>`
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
