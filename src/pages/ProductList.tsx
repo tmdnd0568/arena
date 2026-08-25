@@ -204,7 +204,7 @@ const ColCard = styled.li`
 
   .col-card__rating {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
     color: #10202b;
     margin-bottom: 12px;
   }
@@ -227,12 +227,12 @@ const ColCard = styled.li`
 
       .spec-label {
         color: ${({ theme }) => theme.colors.textFaint};
-        font-weight: 500;
+        font-weight: 400;
       }
 
       .spec-val {
         color: #10202b;
-        font-weight: 700;
+        font-weight: 400;
 
         &--rating {
           color: #009fdb;
@@ -262,7 +262,7 @@ const ColCard = styled.li`
 
     .price-discount {
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 700;
       color: ${({ theme }) => theme.colors.navy};
     }
   }
@@ -332,7 +332,7 @@ const RatingWrapper = styled.span`
 
   .rating-text {
     color: #10202b;
-    font-weight: 700;
+    font-weight: 400;
   }
 `;
 

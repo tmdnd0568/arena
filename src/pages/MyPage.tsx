@@ -250,7 +250,7 @@ const SectionHeader = styled.div`
 
   .view-all-link {
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 400;
     color: #94a3b8;
     display: flex;
     align-items: center;
@@ -290,7 +290,7 @@ const OrderCard = styled.div`
       padding: 3px 8px;
       border-radius: 5px;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 400;
       margin-right: 8px;
     }
 
@@ -333,7 +333,7 @@ const OrderCard = styled.div`
 
       .brand {
         font-size: 10px;
-        font-weight: 800;
+        font-weight: 600;
         color: #94a3b8;
         text-transform: uppercase;
         margin-bottom: 2px;
@@ -350,7 +350,7 @@ const OrderCard = styled.div`
 
       .price {
         font-size: 15px;
-        font-weight: 900;
+        font-weight: 700;
         color: #10202b;
         margin-bottom: 2px;
       }
@@ -373,7 +373,7 @@ const OrderCard = styled.div`
 
     .review-prompt {
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 400;
       color: #475569;
     }
 
@@ -405,7 +405,7 @@ const OrderCard = styled.div`
       height: 40px;
       border-radius: 5px;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 400;
       cursor: pointer;
       transition: background-color 0.15s, border-color 0.15s;
     }
@@ -423,11 +423,12 @@ const OrderCard = styled.div`
 
     .btn-review-submit {
       background: #ffffff;
-      border: 1.5px solid #10202b;
+      border: 1.5px solid #c8d3db;
       color: #10202b;
 
       &:hover {
         background: #eceff2;
+        border-color: #94a3b8;
       }
     }
   }
@@ -565,7 +566,7 @@ const SettingCard = styled.button`
 
     .name {
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 700;
       color: #10202b;
       margin-bottom: 2px;
     }
@@ -586,7 +587,7 @@ const BottomLogoutWrapper = styled.div`
 
 const BottomLogoutBtn = styled.button`
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 400;
   color: #000000;
   background: transparent;
   border: none;

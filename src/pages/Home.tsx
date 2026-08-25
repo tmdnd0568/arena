@@ -49,7 +49,7 @@ const HeroBanner = styled.section`
     display: inline-block;
     align-self: flex-start;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 400;
     color: ${({ theme }) => theme.colors.white};
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -80,7 +80,7 @@ const HeroBanner = styled.section`
     font-size: clamp(0.8rem, 1.6vw + 0.1rem, 0.9rem);
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.95);
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 24px;
     max-width: 320px;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
@@ -95,7 +95,7 @@ const HeroBanner = styled.section`
     border: 1.5px solid #ffffff; /* 흰색 테두리 */
     background: transparent; /* 투명 배경 */
     color: #ffffff;
-    font-weight: 800;
+    font-weight: 400;
     font-size: 13px;
     box-shadow: none;
     transition: background-color 0.2s, transform 0.2s;
@@ -200,7 +200,7 @@ const ProductSection = styled.section`
     align-items: center;
     gap: 3px;
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 400;
     color: ${({ theme }) => theme.colors.textFaint};
     letter-spacing: 0.05em;
     transition: color 0.15s;
@@ -325,7 +325,7 @@ const ProductCard = styled.li`
 
     .price--sale {
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 700;
       color: ${({ theme }) => theme.colors.navy};
     }
   }
@@ -409,7 +409,7 @@ const BrandCarousel = styled.section`
   .brand-carousel__title {
     color: ${({ theme }) => theme.colors.white};
     font-size: clamp(1.2rem, 4vw + 0.3rem, 1.6rem);
-    font-weight: 900;
+    font-weight: 700;
     line-height: 1.35;
     letter-spacing: -0.01em;
   }
@@ -421,7 +421,7 @@ const BrandCarousel = styled.section`
     border: 1.5px solid #ffffff;
     background: transparent;
     color: #ffffff;
-    font-weight: 800;
+    font-weight: 400;
     font-size: 11px;
     display: inline-flex;
     align-items: center;

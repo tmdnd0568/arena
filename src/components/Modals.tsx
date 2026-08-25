@@ -154,7 +154,7 @@ const SubmitButton = styled.button`
   border: 1.5px solid #10202b;
   background: #002b49;
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 14px;
   cursor: pointer;
   margin-top: 8px;
@@ -529,7 +529,7 @@ const TabButton = styled.button<{ $active: boolean }>`
   border-radius: 5px;
   border: none;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.15s ease;
 
@@ -597,7 +597,7 @@ const StoreItem = styled.div`
 
   h4 {
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 400;
     color: #10202b;
     margin: 0 0 6px;
   }
@@ -742,7 +742,7 @@ const CenterBanner = styled.div`
 
   .tel {
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 400;
     margin: 0 0 8px;
   }
 
@@ -984,7 +984,7 @@ const NoticeHeader = styled.button`
 
   h4 {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
     color: #10202b;
     margin: 0;
     line-height: 1.45;
@@ -1149,8 +1149,7 @@ const IntroHero = styled.div`
 
   .hero-tag {
     font-size: 9px;
-    font-weight: 900;
-    color: #00c2ff;
+    font-weight: 400; color: #00c2ff;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 8px;
@@ -1253,8 +1252,7 @@ const TimelineItem = styled.div`
 
   .title {
     font-size: 13px;
-    font-weight: 800;
-    color: #10202b;
+    font-weight: 400; color: #10202b;
     margin-bottom: 4px;
   }
 
@@ -1528,7 +1526,7 @@ const SettingRow = styled.div`
     text-align: left;
     h4 {
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 400;
       color: #10202b;
       margin: 0 0 2px;
     }
@@ -1747,7 +1745,7 @@ const ProductInfoCard = styled.div`
 
     h4 {
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 400;
       color: #10202b;
       margin-bottom: 2px;
     }
@@ -1766,7 +1764,7 @@ const Textarea = styled.textarea`
   border-radius: 5px;
   padding: 12px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   box-sizing: border-box;
   resize: none;
   font-family: inherit;
@@ -1924,8 +1922,7 @@ const PaymentMethodOption = styled.button<{ $isSelected: boolean }>`
     justify-content: center;
     color: #ffffff;
     font-size: 11px;
-    font-weight: 900;
-  }
+    font-weight: 400; }
 `;
 
 // Toss Pay specific styles
@@ -1936,8 +1933,7 @@ const TossPayButton = styled.button`
   border: none;
   background: #0064FF;
   color: #ffffff;
-  font-weight: 800;
-  font-size: 16px;
+  font-weight: 400; font-size: 16px;
   cursor: pointer;
   margin-top: 8px;
   display: flex;
@@ -1960,8 +1956,7 @@ const TossPayButton = styled.button`
 
   .toss-logo-text {
     font-size: 20px;
-    font-weight: 900;
-    font-style: italic;
+    font-weight: 400; font-style: italic;
     letter-spacing: -1px;
   }
 `;
@@ -1975,8 +1970,7 @@ const TossPayBadge = styled.div`
   border-radius: 5px;
   padding: 2px 8px;
   font-size: 13px;
-  font-weight: 900;
-  font-style: italic;
+  font-weight: 400; font-style: italic;
   letter-spacing: -0.5px;
   line-height: 1.4;
 `;
@@ -1996,8 +1990,7 @@ const TossPayInfoBox = styled.div`
     gap: 8px;
     margin-bottom: 10px;
     font-size: 13px;
-    font-weight: 800;
-    color: #0050CC;
+    font-weight: 400; color: #0050CC;
   }
 
   .toss-info-list {
@@ -2055,8 +2048,7 @@ const TossProcessingOverlay = styled.div`
 
   .toss-processing-title {
     font-size: 16px;
-    font-weight: 800;
-    color: #0064FF;
+    font-weight: 400; color: #0064FF;
   }
 
   .toss-processing-sub {
@@ -2306,7 +2298,7 @@ const OrderHistoryCard = styled.div`
       padding: 3px 8px;
       border-radius: 5px;
       font-size: 10px;
-      font-weight: 800;
+      font-weight: 400;
       text-transform: uppercase;
 
       &--delivered {
@@ -2362,7 +2354,7 @@ const OrderHistoryCard = styled.div`
 
       .price {
         font-size: 14px;
-        font-weight: 800;
+        font-weight: 700;
         color: #10202b;
         margin-bottom: 2px;
       }
@@ -2726,7 +2718,7 @@ const AddCardForm = styled.form`
 
   h4 {
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 400;
     color: #002b49;
     margin: 0 0 14px;
   }

@@ -40,7 +40,7 @@ const InfoDetails = styled.section`
 
   .info-details__category {
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 600;
     color: ${({ theme }) => theme.colors.cyanDark};
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -69,7 +69,7 @@ const InfoDetails = styled.section`
     .rating-text {
       font-size: 11px;
       color: #10202b;
-      font-weight: 700;
+      font-weight: 400;
     }
   }
 
@@ -86,7 +86,7 @@ const InfoDetails = styled.section`
 
     .price-discount {
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 700;
       color: ${({ theme }) => theme.colors.navy};
     }
   }
@@ -111,7 +111,7 @@ const ColorOptions = styled.div`
 
   .color-options__label {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 400;
     color: #10202b;
 
     strong {
@@ -206,7 +206,7 @@ const SpecAccBtn = styled.button<{ $isOpen: boolean }>`
 
   .label {
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 400;
     color: ${({ theme }) => theme.colors.textFaint};
     text-transform: uppercase;
     display: block;
@@ -215,7 +215,7 @@ const SpecAccBtn = styled.button<{ $isOpen: boolean }>`
 
   .val {
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 400;
     color: #10202b;
   }
 
@@ -244,7 +244,7 @@ const SpecSelectList = styled.ul<{ $isOpen: boolean }>`
 const SpecSelectItem = styled.li<{ $isActive: boolean }>`
   padding: 12px 16px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   color: ${({ $isActive, theme }) => ($isActive ? theme.colors.cyanDark : '#10202B')};
   background-color: ${({ $isActive }) => ($isActive ? '#f0f9ff' : 'transparent')};
   cursor: pointer;
@@ -667,10 +667,10 @@ const ProductDetail: React.FC = () => {
               {/* 4. 안티포그 (비드롭다운 고정 정보) */}
               <SpecAccordion className="spec-accordion" style={{ border: 'none', background: 'transparent' }}>
                 <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column' }}>
-                  <span className="label" style={{ fontSize: '11px', fontWeight: 800, color: '#9AACB8', textTransform: 'uppercase', marginBottom: '2px' }}>
+                  <span className="label" style={{ fontSize: '11px', fontWeight: 400, color: '#9AACB8', textTransform: 'uppercase', marginBottom: '2px' }}>
                     김서림 방지 (Anti-Fog)
                   </span>
-                  <span className="val" style={{ fontSize: '13px', fontWeight: 700, color: '#10202B' }}>
+                  <span className="val" style={{ fontSize: '13px', fontWeight: 400, color: '#10202B' }}>
                     {product.antifog}
                   </span>
                 </div>

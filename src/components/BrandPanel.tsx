@@ -203,18 +203,19 @@ const CtaButton = styled.button`
   align-items: center;
   gap: 6px;
   padding: 12px 24px;
-  border: 2px solid ${({ theme }) => theme.colors.navy};
-  border-radius: ${({ theme }) => theme.radii.pill};
+  border: none;
+  border-radius: 8px;
   font-weight: 700;
   font-size: clamp(0.85rem, 1.1vw, 0.938rem);
-  color: ${({ theme }) => theme.colors.navy};
-  transition: background 0.2s ease, color 0.2s ease;
+  background: ${({ theme }) => theme.colors.navy};
+  color: ${({ theme }) => theme.colors.white};
+  transition: background 0.2s ease, transform 0.2s ease;
   text-decoration: none !important;
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.navy};
-    color: ${({ theme }) => theme.colors.white};
+    background: #1c3547;
+    transform: translateY(-1px);
   }
 
   .icon-chevron {
@@ -255,7 +256,7 @@ const StoreButton = styled.a`
   gap: 10px;
   padding: 9px 16px;
   border: 1.5px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.radii.sm};
+  border-radius: 8px;
   background: ${({ theme }) => theme.colors.white};
   transition: border-color 0.15s, box-shadow 0.15s;
   text-decoration: none !important;

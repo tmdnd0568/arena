@@ -53,7 +53,7 @@ const BasketList = styled.ul`
 const BasketCard = styled.li<{ $isRemoving: boolean }>`
   display: flex;
   padding: 16px;
-  border: 1.5px solid #10202b;
+  border: none;
   border-radius: 5px;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.card};
@@ -119,7 +119,7 @@ const BasketCard = styled.li<{ $isRemoving: boolean }>`
 
   .basket-card__price {
     font-size: 14px;
-    font-weight: 800;
+    font-weight: 700;
     color: ${({ theme }) => theme.colors.navy};
   }
 
@@ -190,7 +190,7 @@ const BasketCard = styled.li<{ $isRemoving: boolean }>`
       height: 100%;
       background: #f8fafc;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 400;
       color: #10202b;
       display: flex;
       align-items: center;
@@ -205,7 +205,7 @@ const BasketCard = styled.li<{ $isRemoving: boolean }>`
     .qty-num {
       padding: 0 10px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 400;
       color: #10202b;
     }
   }
@@ -223,7 +223,7 @@ const EmptyCart = styled.div`
 
   p {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 20px;
   }
 
@@ -234,7 +234,7 @@ const EmptyCart = styled.div`
     border-radius: 12px;
     background: #00d0ff;
     color: #002b49;
-    font-weight: 800;
+    font-weight: 400;
     font-size: 13px;
     box-shadow: 0 3px 0 #10202b;
     transition: transform 0.1s, box-shadow 0.1s;
@@ -259,7 +259,7 @@ const ClearCartRow = styled.div`
     background: transparent;
     border: none;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 400;
     color: #8fa0ad;
     cursor: pointer;
     padding: 6px 10px;
@@ -310,12 +310,12 @@ const BasketSummarySection = styled.section`
 
       .label {
         color: ${({ theme }) => theme.colors.textMuted};
-        font-weight: 500;
+        font-weight: 400;
       }
 
       .val {
         color: #10202b;
-        font-weight: 700;
+        font-weight: 400;
       }
 
       &--total {
@@ -326,13 +326,13 @@ const BasketSummarySection = styled.section`
 
         .label {
           color: #10202b;
-          font-weight: 800;
+          font-weight: 400;
         }
 
         .val {
           color: ${({ theme }) => theme.colors.navy};
           font-size: 18px;
-          font-weight: 900;
+          font-weight: 700;
         }
       }
     }
