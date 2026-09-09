@@ -159,15 +159,15 @@ const SubmitButton = styled.button`
   cursor: pointer;
   margin-top: 8px;
   transition: background-color 0.2s, transform 0.1s;
-  box-shadow: 0 4px 0 #10202b;
+  box-shadow: none;
 
   &:hover {
     background: #0b4a72;
   }
 
   &:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #10202b;
+    transform: translateY(1px);
+    box-shadow: none;
   }
 `;
 
