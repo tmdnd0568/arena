@@ -85,12 +85,12 @@ arena/
 | (결제/로그인 관련 이슈) | (원인) | (해결) |
 
 ## 📄 링크
-피그마:https://www.figma.com/design/jWl7Py1lPrQySJ3eVRsqv7/%EC%95%84%EB%A0%88%EB%82%98-%EC%88%98%EA%B2%BD-%EC%95%B1%EC%9B%B9-%EC%9D%B4%EC%BB%A4%EB%A8%B8%EC%8A%A4?node-id=0-1&t=bp5HXdOLYx53XrDg-1
+- 피그마:https://www.figma.com/design/jWl7Py1lPrQySJ3eVRsqv7/%EC%95%84%EB%A0%88%EB%82%98-%EC%88%98%EA%B2%BD-%EC%95%B1%EC%9B%B9-%EC%9D%B4%EC%BB%A4%EB%A8%B8%EC%8A%A4?node-id=0-1&t=bp5HXdOLYx53XrDg-1
 
-노션:https://app.notion.com/p/Project-2-E-Commerce-Web-Design-Development-a711a4be835a83a5adf30188242c7aa6
+- 노션:https://app.notion.com/p/Project-2-E-Commerce-Web-Design-Development-a711a4be835a83a5adf30188242c7aa6
 
-배포주소:https://arena-eta-five.vercel.app/
+- 배포주소:https://arena-eta-five.vercel.app/
 
-깃허브:https://github.com/tmdnd0568/arena
+- 깃허브:https://github.com/tmdnd0568/arena
 
-노트폴리오:https://notefolio.net/aivibe001/466147
+- 노트폴리오:https://notefolio.net/aivibe001/466147
