@@ -14,7 +14,8 @@
 ## 🖼️ 데모
 | 홈 · 제품 리스팅 | 제품 상세 | 결제 화면 |
 |---|---|---|
-| (스크린샷 삽입) | (스크린샷 삽입) | (스크린샷 삽입) |
+| <img width="1918" height="925" alt="image" src="https://github.com/user-attachments/assets/ab26f597-7f8e-4f67-91cf-c92e1a379d81" />| <img width="1920" height="918" alt="image" src="https://github.com/user-attachments/assets/8b281a12-f0bc-4fd7-9213-7f61e460c476" /> |<img width="1916" height="914" alt="image" src="https://github.com/user-attachments/assets/e2eb5cab-44af-498d-91eb-a95ae5f0e38b" />
+  |
 
 배포 링크: https://arena-eta-five.vercel.app/
 
@@ -22,15 +23,15 @@
 
 ### 1. 소셜 로그인 (Google · Apple)
 회원가입 절차 없이 **Google, Apple 계정으로 바로 로그인**할 수 있도록 연동했습니다. 이커머스 특성상 결제 직전 이탈을 줄이기 위해, 로그인 장벽을 최소화하는 데 초점을 맞췄습니다.
-> (실제 인증 흐름 — Firebase Authentication 연동 방식 등 — 을 채워주세요.)
+
 
 ### 2. 제품 리스팅 · 상세 페이지
 카테고리별로 제품을 탐색하고, 제품 상세 페이지에서 이미지·옵션·가격 정보를 확인할 수 있습니다.
-> (필터링, 정렬, 옵션 선택 등 실제 구현된 UI 동작을 채워주세요.)
+
 
 ### 3. 토스페이먼츠 SDK v2 결제 연동
 장바구니에서 결제까지 이어지는 흐름에 **토스페이먼츠 SDK v2**를 연동해 결제창을 띄우고 결제를 완료합니다.
-> (결제 요청 → 승인 → 완료 화면까지의 구체적인 흐름을 채워주세요.)
+
 
 ## 🧭 사용자 플로우
 ```mermaid
@@ -82,12 +83,12 @@ arena/
 | 이슈 | 원인 | 해결 |
 |---|---|---|
 | 전역 폰트 굵기 불일치 | 컴포넌트별 font-weight 개별 지정 | 전역 폰트 굵기 리팩토링 |
-| (결제/로그인 관련 이슈) | (원인) | (해결) |
+| (결제/로그인 관련 이슈) | Api 키 값이 꼬였습니다. | Api 키값을 다시 받아 수정하였습니다. |
 
 ## 📄 링크
 - 피그마:https://www.figma.com/design/jWl7Py1lPrQySJ3eVRsqv7/%EC%95%84%EB%A0%88%EB%82%98-%EC%88%98%EA%B2%BD-%EC%95%B1%EC%9B%B9-%EC%9D%B4%EC%BB%A4%EB%A8%B8%EC%8A%A4?node-id=0-1&t=bp5HXdOLYx53XrDg-1
 
-- 노션:https://app.notion.com/p/Project-2-E-Commerce-Web-Design-Development-a711a4be835a83a5adf30188242c7aa6
+- 노션:[https://app.notion.com/p/Project-2-E-Commerce-Web-Design-Development-a711a4be835a83a5adf30188242c7aa6](https://app.notion.com/p/E-Commerce-Web-Design-Development-a711a4be835a83a5adf30188242c7aa6?source=copy_link)
 
 - 배포주소:https://arena-eta-five.vercel.app/
 
